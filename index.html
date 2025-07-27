@@ -3,59 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>Yeonju Yi | Cybersecurity Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-weight: bold;
+      color: #6a5acd;
+      font-size: 1.2rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #ff69b4;
+    }
+    .hero {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      color: white;
+      text-align: center;
+      padding: 5rem 1rem 4rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    .hero a {
+      background: white;
+      color: #6a5acd;
+      padding: 0.7rem 1.2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🛡️ Yeonju Yi</h1>
-    <p class="subtitle">보안 개발자 | 사이버세상의 문제를 해결하는 사람</p>
-  </header>
+  <nav>
+    <div class="logo">🛡️ Yeonju Yi</div>
+    <div>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <section class="about">
-    <h2>👋 소개</h2>
-    <p>안녕하세요! 저는 사이버보안과에 재학 중인 <strong>이연주</strong>입니다. <br>
-      암호화 기술, 보안 툴 제작, 시스템 분석에 관심이 많으며, <br>
-      실습 중심의 프로젝트를 통해 보안 역량을 키워가고 있습니다. <br>
-      제 목표는 <strong>세상에서 가장 신뢰받는 보안 개발자</strong>가 되는 것입니다.</p>
+  <section class="hero">
+    <h1>Hi, I'm Yeonju Yi 👩‍💻</h1>
+    <p>Security Developer & Ethical Hacker in training</p>
+    <a href="#projects">프로젝트 보러가기</a>
   </section>
 
-  <section class="skills">
-    <h2>🛠️ 기술 스택</h2>
+  <section id="about">
+    <h2>👋 About Me</h2>
+    <p>사이버보안과에 재학 중이며, 보안 도구 개발과 시스템 분석, 암호화 기술에 흥미가 많습니다.<br>
+    보안을 더 쉽고, 안전하게 만들고 싶은 개발자 <strong>이연주</strong>입니다.</p>
+  </section>
+
+  <section id="skills">
+    <h2>🛠️ Skills</h2>
     <ul>
-      <li>💻 Python (Flask), Java</li>
-      <li>🧠 암호화(AES, Caesar), 해시(SHA-256), 인증</li>
-      <li>🐧 Linux CLI, Ubuntu Server, UTM 가상화</li>
-      <li>🧪 Burp Suite, Wireshark, nmap, TryHackMe</li>
-      <li>🌐 HTML, CSS, JS, Git, GitHub Pages</li>
+      <li>Python (Flask), Java</li>
+      <li>AES, Caesar, Base64 등 암호화 로직 구현</li>
+      <li>Linux CLI, Ubuntu Server, UTM 가상화</li>
+      <li>Burp Suite, Wireshark, nmap</li>
+      <li>HTML, CSS, JavaScript, GitHub Pages</li>
     </ul>
   </section>
 
-  <section class="projects">
-    <h2>🚀 프로젝트</h2>
-    <div class="project">
+  <section id="projects">
+    <h2>🚀 Projects</h2>
+    <div>
       <h3>🧩 CryptoMatch</h3>
       <p>보안 성향 심리테스트 웹앱<br>
-      보안에 대한 가치관과 성향을 분석해 추천 암호화 방식을 제시해주는 앱입니다. <br>
-      일반인도 재미있게 접근할 수 있도록 디자인된 <strong>보안 친화형 심리 테스트</strong>입니다.</p>
-    </div>
-    <div class="project">
+      사용자의 보안 가치관을 분석하여 암호화 알고리즘을 추천합니다.</p>
+
       <h3>🔐 NoteCrypt</h3>
-      <p>개인용 비밀 노트 암호화 시스템<br>
-      AES-GCM 방식으로 데이터를 암호화하고, 즐겨찾기·삭제·복호화 등 기능을 포함한 <strong>군사급 보안 메모장</strong>입니다.</p>
+      <p>AES-GCM을 활용한 보안 노트앱<br>
+      마스터 패스워드, 암호화 저장, 복호화 보기, 즐겨찾기 기능 포함</p>
     </div>
   </section>
 
-  <section class="contact">
-    <h2>📬 연락처</h2>
-    <p>GitHub: <a href="https://github.com/qu1cks1lv37" target="_blank">qu1cks1lv37</a><br>
-    Email: <code>qu1cks1lv37@gmail.com</code></p>
+  <section id="contact">
+    <h2>📬 Contact</h2>
+    <p>Email: yeonjuyi@pm.me<br>
+    GitHub: <a href="https://github.com/qu1cks1lv37" target="_blank">qu1cks1lv37</a></p>
   </section>
 
   <footer>
-    <p>✨ 만든 사람: 이연주 | 보안은 선택이 아닌 필수입니다 ✨</p>
-    <p>&copy; 2025 Yeonju Yi</p>
+    <p>Made by Yeonju Yi © 2025</p>
   </footer>
 </body>
 </html>
