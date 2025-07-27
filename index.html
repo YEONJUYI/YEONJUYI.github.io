@@ -56,6 +56,25 @@
       text-decoration: none;
       font-weight: bold;
     }
+    .project {
+      margin-bottom: 2rem;
+    }
+    .project img {
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-top: 0.5rem;
+    }
+    .project a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      color: #6a5acd;
+      font-weight: bold;
+    }
+    .project a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -94,15 +113,24 @@
 
   <section id="projects">
     <h2>🚀 Projects</h2>
-    <div>
+
+    <div class="project">
       <h3>🧩 CryptoMatch</h3>
       <p>보안 성향 심리테스트 웹앱<br>
       사용자의 보안 가치관을 분석하여 암호화 알고리즘을 추천합니다.</p>
+      <img src="images/cryptomatch.png" alt="CryptoMatch Screenshot">
+      <a href="https://cryptomatch.vercel.app" target="_blank">🔗 웹사이트 방문</a>
+      <a href="https://github.com/qu1cks1lv37/cryptomatch" target="_blank">🔧 GitHub 저장소</a>
+    </div>
 
+    <div class="project">
       <h3>🔐 NoteCrypt</h3>
       <p>AES-GCM을 활용한 보안 노트앱<br>
       마스터 패스워드, 암호화 저장, 복호화 보기, 즐겨찾기 기능 포함</p>
+      <img src="images/notecrypt.png" alt="NoteCrypt Screenshot">
+      <a href="https://github.com/qu1cks1lv37/notecrypt" target="_blank">🔧 GitHub 저장소</a>
     </div>
+
   </section>
 
   <section id="contact">
