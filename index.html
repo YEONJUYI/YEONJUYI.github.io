@@ -566,7 +566,28 @@
             margin: 0;
         }
         
-        /* Mobile optimization for skill-project cards */
+        /* Blog Link Icons */
+        .blog-link-icon {
+            font-size: 12px;
+            margin-left: 5px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-link-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        .blog-card:hover {
+            border-color: #00ff41 !important;
+            box-shadow: 0 0 25px rgba(0, 255, 65, 0.4) !important;
+            transform: translateY(-3px) !important;
+        }
+        
+        .blog-card:hover .blog-title {
+            color: #00ff41 !important;
+        }
         @media screen and (max-width: 768px) {
             .skill-project-header {
                 flex-direction: column;
@@ -1328,12 +1349,12 @@
                             <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
                             <div class="section-title">Latest Blog Posts</div>
                             
-                            <div class="blog-card">
+                            <div class="blog-card" onclick="openBlogPost('utm-nmap')" style="cursor: pointer;">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">Network Security</div>
                                 </div>
-                                <h4 class="blog-title">UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기</h4>
+                                <h4 class="blog-title">UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기 <span class="blog-link-icon">🔗</span></h4>
                                 <p class="blog-excerpt">Mac 환경에서 UTM 가상화를 이용해 Ubuntu Server를 설치하고, Nmap을 활용한 네트워크 보안 분석 실습 과정을 정리했습니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#UTM</span>
@@ -1343,12 +1364,12 @@
                                 </div>
                             </div>
                             
-                            <div class="blog-card">
+                            <div class="blog-card" onclick="openBlogPost('virtualbox-cli')" style="cursor: pointer;">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">System Administration</div>
                                 </div>
-                                <h4 class="blog-title">VirtualBox 사용 Ubuntu CLI로 관리하기 (1)</h4>
+                                <h4 class="blog-title">VirtualBox 사용 Ubuntu CLI로 관리하기 (1) <span class="blog-link-icon">🔗</span></h4>
                                 <p class="blog-excerpt">VirtualBox 환경에서 Ubuntu를 CLI로 효율적으로 관리하는 방법과 필수 명령어들을 정리한 시리즈의 첫 번째 글입니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#VirtualBox</span>
@@ -1358,12 +1379,12 @@
                                 </div>
                             </div>
                             
-                            <div class="blog-card">
+                            <div class="blog-card" onclick="openBlogPost('journalctl-security')" style="cursor: pointer;">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">Security Monitoring</div>
                                 </div>
-                                <h4 class="blog-title">journalctl 로그로 root 권한 획득 감지하기</h4>
+                                <h4 class="blog-title">journalctl 로그로 root 권한 획득 감지하기 <span class="blog-link-icon">🔗</span></h4>
                                 <p class="blog-excerpt">시스템 로그 분석을 통해 의심스러운 권한 상승 시도를 탐지하고 모니터링하는 방법을 실습과 함께 정리했습니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#journalctl</span>
@@ -1371,6 +1392,12 @@
                                     <span class="blog-tag">#권한상승</span>
                                     <span class="blog-tag">#보안모니터링</span>
                                 </div>
+                            </div>
+                            
+                            <div style="text-align: center; margin-top: 30px; padding: 15px; border: 1px solid #00cc33; border-radius: 8px; background: rgba(0, 255, 65, 0.05);">
+                                <p style="color: #00cc33; margin: 0; font-size: 13px;">
+                                    📝 더 많은 보안 실습 및 기술 포스팅은 <a href="https://velog.io/@qu1cks1lv37" target="_blank" style="color: #00ff41; text-decoration: none;">Velog 블로그</a>에서 확인하세요!
+                                </p>
                             </div>
                         </div>
                         
@@ -1632,6 +1659,23 @@
         function hideSkillDetails() {
             const popup = document.getElementById('skill-details');
             popup.style.display = 'none';
+        }
+        
+        // Blog Post Functions
+        function openBlogPost(postId) {
+            const blogUrls = {
+                'utm-nmap': 'https://velog.io/@qu1cks1lv37/UTM으로-Ubuntu-Server-설치하고-Nmap으로-보안-분석해보기-Mac-환경-실습',
+                'virtualbox-cli': 'https://velog.io/@qu1cks1lv37/ubuntu-cli로-관리하기-1',
+                'journalctl-security': 'https://velog.io/@qu1cks1lv37/journalctl-로그로-root-권한-획득-감지하기'
+            };
+            
+            const url = blogUrls[postId];
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                // 실제 링크가 없는 경우 Velog 메인으로
+                window.open('https://velog.io/@qu1cks1lv37', '_blank');
+            }
         }
         
         // Close popup when clicking outside
