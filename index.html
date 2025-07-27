@@ -2,151 +2,157 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yeonju Yi | Cybersecurity Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이연주 | 보안에 진심인 개발자</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
     body {
-      font-family: 'IBM Plex Sans KR', sans-serif;
+      font-family: 'SUIT', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      color: #111;
+      margin: 0;
+      padding: 2rem;
+      line-height: 1.6;
     }
-    nav {
-      position: sticky;
-      top: 0;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
+    h1, h2, h3 {
+      color: #222;
     }
-    nav .logo {
-      font-weight: bold;
-      color: #6a5acd;
-      font-size: 1.2rem;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 1.5rem;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: #ff69b4;
-    }
-    .hero {
-      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
-      color: white;
-      text-align: center;
-      padding: 5rem 1rem 4rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
+    h1 {
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
-    .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-    }
-    .hero a {
-      background: white;
-      color: #6a5acd;
-      padding: 0.7rem 1.2rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .project {
-      margin-bottom: 2rem;
-    }
-    .project img {
-      max-width: 100%;
+    section {
+      max-width: 850px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      margin-top: 0.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
     }
-    .project a {
-      display: inline-block;
-      margin-top: 0.5rem;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+    }
+    a {
+      color: #007acc;
       text-decoration: none;
-      color: #6a5acd;
-      font-weight: bold;
     }
-    .project a:hover {
+    a:hover {
       text-decoration: underline;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    hr {
+      border: none;
+      border-top: 2px solid #eee;
+      margin: 2rem 0;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo">🛡️ Yeonju Yi</div>
-    <div>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
 
-  <section class="hero">
-    <h1>Hi, I'm Yeonju Yi 👩‍💻</h1>
-    <p>Security Developer & Ethical Hacker in training</p>
-    <a href="#projects">프로젝트 보러가기</a>
-  </section>
+  <section>
+    <h1>보안에 진심인 개발자, 이연주입니다.</h1>
 
-  <section id="about">
-    <h2>👋 About Me</h2>
-    <p>사이버보안과에 재학 중이며, 보안 도구 개발과 시스템 분석, 암호화 기술에 흥미가 많습니다.<br>
-    보안을 더 쉽고, 안전하게 만들고 싶은 개발자 <strong>이연주</strong>입니다.</p>
-  </section>
-
-  <section id="skills">
-    <h2>🛠️ Skills</h2>
+    <h2>👩‍💻 About Me</h2>
+    <p>안녕하세요! 사이버보안과 재학 중인 개발자 이연주입니다.</p>
+    <p>보안 도구 제작, 웹 보안 테스트, 암호화 응용프로그램 개발 등 <strong>보안과 개발의 융합</strong>을 추구하고 있습니다.</p>
     <ul>
-      <li>Python (Flask), Java</li>
-      <li>AES, Caesar, Base64 등 암호화 로직 구현</li>
-      <li>Linux CLI, Ubuntu Server, UTM 가상화</li>
-      <li>Burp Suite, Wireshark, nmap</li>
-      <li>HTML, CSS, JavaScript, GitHub Pages</li>
+      <li>💻 Python & Flask 중심의 프로젝트 다수 수행</li>
+      <li>🔒 웹 보안 실습 기반의 개발 & 분석 경험</li>
+      <li>✍️ 실습 기록 블로그 운영 중 (Velog)</li>
     </ul>
-  </section>
 
-  <section id="projects">
+    <hr>
+
+    <h2>⚙️ Skills</h2>
+    <table>
+      <tr><th>분류</th><th>기술 스택</th></tr>
+      <tr><td><strong>언어</strong></td><td>Python, Java, HTML, CSS</td></tr>
+      <tr><td><strong>보안 툴</strong></td><td>Burp Suite, Wireshark, nmap</td></tr>
+      <tr><td><strong>프레임워크</strong></td><td>Flask, React (초급)</td></tr>
+      <tr><td><strong>운영체제</strong></td><td>Ubuntu, Windows</td></tr>
+      <tr><td><strong>기타 도구</strong></td><td>Git, Notion, Render</td></tr>
+    </table>
+
+    <hr>
+
     <h2>🚀 Projects</h2>
 
-    <div class="project">
-      <h3>🧩 CryptoMatch</h3>
-      <p>보안 성향 심리테스트 웹앱<br>
-      사용자의 보안 가치관을 분석하여 암호화 알고리즘을 추천합니다.</p>
-      <img src="images/cryptomatch.png" alt="CryptoMatch Screenshot">
-      <a href="https://cryptomatch-v11.vercel.app" target="_blank">🔗 웹사이트 방문</a>
-      <a href="https://github.com/qu1cks1lv37/cryptomatch" target="_blank">🔧 GitHub 저장소</a>
-    </div>
+    <!-- CryptoMatch 프로젝트 -->
+<div class="title">🧠 CryptoMatch - 보안 성향 테스트 웹앱</div>
+<p>심리 테스트로 나의 보안 성향을 알아보고, 맞춤형 암호화 알고리즘을 추천받는 서비스</p>
+<ul>
+  <li>사용 기술: <code>Flask</code>, <code>HTML/CSS</code>, <code>JavaScript</code>, <code>Render</code></li>
+  <li>15개 질문 → 점수 계산 → 암호화 유형 추천</li>
+  <li>모바일 UI / 카카오톡 공유 기능</li>
+</ul>
+<div class="buttons">
+  <a class="btn" href="#" target="_blank">🔗 웹사이트 방문</a>
+  <a class="btn" href="https://www.notion.so/CryptoMatch-23587252a03180789de9e2f4ad07234f?pvs=21" target="_blank">📝 보고서 보기</a>
+</div>
 
-    <div class="project">
-      <h3>🔐 NoteCrypt</h3>
-      <p>AES-GCM을 활용한 보안 노트앱<br>
-      마스터 패스워드, 암호화 저장, 복호화 보기, 즐겨찾기 기능 포함</p>
-      <img src="images/notecrypt.png" alt="NoteCrypt Screenshot">
-      <a href="https://github.com/qu1cks1lv37/notecrypt" target="_blank">🔧 GitHub 저장소</a>
-    </div>
+<!-- NoteCrypt 프로젝트 -->
+<div class="title">📓 NoteCrypt - 군사급 보안 수준의 개인 노트 관리 시스템</div>
+<p>군사급 보안 요건을 만족하는 고급 개인 노트 앱으로, <strong>Tauri 기반 데스크탑 보안 애플리케이션</strong>입니다.</p>
+<ul>
+  <li><strong>주요 기술</strong>: Tauri, Rust, React, TypeScript, ChaCha20-Poly1305, Argon2, TPM</li>
+  <li><strong>핵심 기능</strong>: 메모 암호화/복호화, 즐겨찾기, 보안 타이머, 마스터 패스워드, 메모리 제로화, 디버거 탐지, TPM 연동</li>
+  <li><strong>성과</strong>: 메모리 사용량 75% 절약, 암호화 성능 3.4배 향상, OWASP/NIST 가이드라인 기반 설계</li>
+</ul>
+<div class="buttons">
+  <a class="btn" href="https://www.notion.so/vs-Tauri-23987252a0318058ac08d7970240683d?pvs=21" target="_blank">📊 기술 비교 보고서 보기</a>
+</div>
 
-  </section>
+<!-- StudentInfo 프로젝트 -->
+<div class="title">🛠️ StudentInfo Clone (실습 중)</div>
+<ul>
+  <li>실습 목적: 학생정보 시스템 구조 복제 + 보안 테스트</li>
+  <li>사용 툴: Linux, Ubuntu, Python, HTML</li>
+</ul>
+<div class="buttons">
+  <a class="btn" href="#" target="_blank">📝 실습 보고서 (작성 중)</a>
+</div>
 
-  <section id="contact">
+    <div class="title">🛠️ StudentInfo Clone (실습 중)</div>
+    <ul>
+      <li>실습 목적: 학생정보 시스템 구조 복제 + 보안 테스트</li>
+      <li>사용 툴: Linux, Ubuntu, Python, HTML</li>
+    </ul>
+
+    <hr>
+
+    <h2>📚 활동 및 기록</h2>
+    <ul>
+      <li>📝 <strong>Velog 블로그 운영</strong>: <a href="https://velog.io/@qu1cks1lv37" target="_blank">velog.io/@qu1cks1lv37</a></li>
+      <li>🎓 <strong>폴리텍 강서캠퍼스 사이버보안과 재학 중</strong> (졸업 예정: 2026년 3월)</li>
+      <li>정보보호학 학위 취득 예정 (학점은행제)</li>
+    </ul>
+
+    <hr>
+
     <h2>📬 Contact</h2>
-    <p>Email: yeonjuyi@pm.me<br>
-    GitHub: <a href="https://github.com/qu1cks1lv37" target="_blank">qu1cks1lv37</a></p>
+    <table>
+      <tr><td>📧 Email</td><td>qu1cks1lv37@gmail.com</td></tr>
+      <tr><td>🐙 GitHub</td><td><a href="https://github.com/YEONJUYI/qu1cks1lv37" target="_blank">github.com/YEONJUYI/qu1cks1lv37</a></td></tr>
+      <tr><td>📝 Velog</td><td><a href="https://velog.io/@qu1cks1lv37/posts" target="_blank">velog.io/@qu1cks1lv37/posts</a></td></tr>
+    </table>
+
   </section>
 
-  <footer>
-    <p>Made by Yeonju Yi © 2025</p>
-  </footer>
 </body>
 </html>
