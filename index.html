@@ -91,8 +91,9 @@
         
         /* Header Section */
         .header-section {
-            text-align: center;
-            margin-bottom: 30px;
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 10px 0;
         }
         
         .ascii-art {
@@ -120,6 +121,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
+            min-height: 0;
         }
         
         .menu-display {
@@ -127,21 +129,22 @@
             border: 1px solid #00ff41;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex: 1;
             overflow-y: auto;
+            min-height: 200px;
         }
         
         /* Menu Options */
         .menu-options {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .menu-title {
             color: #00ff41;
             font-size: 18px;
             margin-bottom: 20px;
-            text-align: center;
+            text-align: left;
             text-shadow: 0 0 10px #00ff41;
         }
         
@@ -198,11 +201,14 @@
         
         /* Command Input */
         .command-input-area {
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #00ff41;
+            margin-top: 10px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid #00ff41;
             border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+            flex-shrink: 0;
+            position: relative;
         }
         
         .command-line {
@@ -614,11 +620,14 @@
             .menu-title {
                 font-size: 16px;
                 margin-bottom: 15px;
+                text-align: left;
             }
             
             .command-input-area {
                 padding: 10px;
-                margin-top: 15px;
+                margin-top: 10px;
+                position: sticky;
+                bottom: 10px;
             }
             
             .prompt {
@@ -920,7 +929,7 @@
             <div class="terminal-content">
                 <!-- Header Section -->
                 <div class="header-section">
-                    <div class="ascii-art">
+                    <div class="ascii-art" style="text-align: left;">
  ██████╗ ██╗   ██╗ ██╗ ██████╗██╗  ██╗███████╗██╗██╗    ██╗██████╗ ███████╗
 ██╔═══██╗██║   ██║███║██╔════╝██║ ██╔╝██╔════╝██║██║    ██║╚════██╗╚════██║
 ██║   ██║██║   ██║╚██║██║     █████╔╝ ███████╗██║██║    ██║ █████╔╝    ██╔╝
@@ -928,14 +937,23 @@
 ╚██████╔╝╚██████╔╝ ██║╚██████╗██║  ██╗███████║██║███████╗██║██████╔╝   ██║  
  ╚══▀▀═╝  ╚═════╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝╚═╝╚═════╝    ╚═╝  
                     </div>
-                    <div class="intro">
+                    <div class="intro" style="text-align: left;">
                         <span class="typing" id="typing-text"></span>
                     </div>
-                    <div class="subtitle">Security-focused Developer | Cyber Security Student</div>
+                    <div class="subtitle" style="text-align: left;">Security-focused Developer | Cyber Security Student</div>
                 </div>
                 
                 <!-- Menu Section -->
                 <div class="menu-section">
+                    <!-- Command Input - 위쪽으로 이동 -->
+                    <div class="command-input-area">
+                        <div class="command-line">
+                            <span class="prompt">qu1cks1lv37@security:~$</span>
+                            <input type="text" class="command-input" id="command-input" placeholder="Type menu number (1-6) or 'help'" autocomplete="off">
+                        </div>
+                        <div id="command-output" style="color: #00cc33; font-size: 12px; margin-top: 10px;"></div>
+                    </div>
+                    
                     <div class="menu-display">
                         <!-- Main Menu -->
                         <div id="main-menu" class="content-section active">
@@ -1171,15 +1189,6 @@
                                 <a href="https://velog.io/@qu1cks1lv37" target="_blank">velog.io/@qu1cks1lv37</a>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Command Input -->
-                    <div class="command-input-area">
-                        <div class="command-line">
-                            <span class="prompt">qu1cks1lv37@security:~$</span>
-                            <input type="text" class="command-input" id="command-input" placeholder="Type menu number (1-6) or 'help'" autocomplete="off">
-                        </div>
-                        <div id="command-output" style="color: #00cc33; font-size: 12px; margin-top: 10px;"></div>
                     </div>
                 </div>
             </div>
