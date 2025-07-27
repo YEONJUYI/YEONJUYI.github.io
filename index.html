@@ -259,6 +259,7 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             font-size: 12px;
+            display: inline-block;
         }
         
         .project-link:hover {
@@ -466,8 +467,8 @@
                         <li>모바일 UI / 카카오톡 공유 기능</li>
                     </ul>
                     <div class="project-links">
-                        <a href="#" class="project-link">🔗 Live Demo</a>
-                        <a href="#" class="project-link">📝 Report</a>
+                        <a href="https://cryptomatch-v11.vercel.app" class="project-link" target="_blank">🔗 Live Demo</a>
+                        <a href="https://drive.google.com/file/d/1hfK8d_3BH-BZIj9B-sco7mzZwjhvZvWH/view?usp=drive_link" class="project-link" target="_blank">📝 Report</a>
                     </div>
                 </div>
                 
@@ -496,7 +497,7 @@
                         • OWASP 및 NIST 보안 가이드라인 반영한 구조 설계
                     </div>
                     <div class="project-links">
-                        <a href="#" class="project-link">📊 Tech Analysis Report</a>
+                        <a href="https://drive.google.com/file/d/1PFlfvj6BUI7Z2zn1GZnn_AS4PxKpJWea/view?usp=drive_link" class="project-link" target="_blank">📊 웹앱 vs Tauri 기술 비교 분석 보고서</a>
                     </div>
                 </div>
                 
@@ -631,6 +632,17 @@
             // Observe fade-in elements
             document.querySelectorAll('.fade-in').forEach(el => {
                 observer.observe(el);
+            });
+            
+            // Handle external links
+            document.querySelectorAll('.project-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const url = link.getAttribute('href');
+                    if (url && url !== '#') {
+                        window.open(url, '_blank');
+                    }
+                });
             });
         });
     </script>
