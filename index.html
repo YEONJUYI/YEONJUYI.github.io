@@ -6,6 +6,7 @@
     <title>qu1cks1lv37 | Security Terminal</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
         
         * {
             margin: 0;
@@ -14,7 +15,7 @@
         }
         
         body {
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Noto Sans KR', 'JetBrains Mono', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
             background: #0a0a0a;
             color: #00ff41;
             overflow: hidden;
@@ -69,6 +70,7 @@
             color: #000;
             font-weight: 700;
             font-size: 14px;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         /* Terminal Body */
@@ -102,18 +104,24 @@
             text-shadow: 0 0 10px #00ff41;
             white-space: pre;
             margin-bottom: 20px;
+            font-family: 'JetBrains Mono', 'Courier New', monospace !important;
         }
         
         .intro {
             font-size: 20px;
             margin-bottom: 10px;
             text-shadow: 0 0 20px #00ff41;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            font-weight: 500;
+            line-height: 1.4;
         }
         
         .subtitle {
             font-size: 14px;
             color: #00cc33;
             margin-bottom: 20px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            font-weight: 400;
         }
         
         /* Menu Section */
@@ -159,6 +167,7 @@
             margin-bottom: 20px;
             text-align: left;
             text-shadow: 0 0 10px #00ff41;
+            font-family: 'JetBrains Mono', monospace !important;
         }
         
         .menu-item {
@@ -170,6 +179,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: rgba(0, 255, 65, 0.05);
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .menu-item:hover {
@@ -183,6 +193,7 @@
             content: "[" attr(data-key) "] ";
             color: #00cc33;
             font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
         }
         
         /* Content Sections */
@@ -205,6 +216,8 @@
             font-size: 20px;
             margin-bottom: 20px;
             text-shadow: 0 0 10px #00ff41;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            font-weight: 500;
         }
         
         .section-title::before {
@@ -234,13 +247,14 @@
             color: #00cc33;
             margin-right: 10px;
             white-space: nowrap;
+            font-family: 'JetBrains Mono', 'Courier New', monospace !important;
         }
         
         .command-input {
             background: transparent;
             border: none;
             color: #00ff41;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'JetBrains Mono', 'Courier New', monospace !important;
             font-size: 14px;
             outline: none;
             flex: 1;
@@ -249,6 +263,10 @@
         
         .command-input::placeholder {
             color: #006600;
+        }
+        
+        #command-output {
+            font-family: 'JetBrains Mono', 'Courier New', monospace !important;
         }
         
         /* Typing Animation */
@@ -281,6 +299,7 @@
             color: #00ff41;
             margin-bottom: 10px;
             font-size: 14px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .skill-tags {
@@ -330,12 +349,15 @@
             font-size: 18px;
             margin-bottom: 10px;
             text-shadow: 0 0 10px #00ff41;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            font-weight: 500;
         }
         
         .project-desc {
             color: #cccccc;
             margin-bottom: 15px;
             line-height: 1.6;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .project-tech {
@@ -475,6 +497,7 @@
             color: #cccccc;
             line-height: 1.6;
             font-size: 14px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .skill-project-ref {
@@ -489,12 +512,14 @@
             color: #00ff41;
             margin: 0 0 8px 0;
             font-size: 14px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .skill-project-ref p {
             color: #cccccc;
             margin: 0;
             font-size: 13px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         .project-skill-connection {
             display: flex;
@@ -557,6 +582,7 @@
             color: #00ff41;
             font-weight: bold;
             font-size: 14px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .skill-project-desc {
@@ -564,6 +590,7 @@
             font-size: 13px;
             line-height: 1.5;
             margin: 0;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         /* Blog Link Icons */
@@ -655,12 +682,14 @@
             color: #00ff41;
             margin-bottom: 5px;
             font-size: 14px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .badge-info p {
             color: #cccccc;
             font-size: 12px;
             margin-bottom: 5px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .badge-rarity {
@@ -740,6 +769,7 @@
             font-size: 14px;
             margin-bottom: 8px;
             line-height: 1.3;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .blog-excerpt {
@@ -747,6 +777,7 @@
             font-size: 12px;
             line-height: 1.4;
             margin-bottom: 10px;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
         .blog-tags {
@@ -815,7 +846,7 @@
             padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'Noto Sans KR', 'JetBrains Mono', monospace;
             font-size: 12px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
@@ -824,6 +855,12 @@
         .back-button:hover {
             background: rgba(0, 255, 65, 0.2);
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+        
+        /* 한글 텍스트 요소들 */
+        p, li, div {
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
         }
         
         /* Mobile-first approach */
@@ -882,11 +919,15 @@
             .intro {
                 font-size: 14px !important;
                 text-align: left !important;
+                line-height: 1.6 !important;
+                letter-spacing: -0.02em;
             }
             
             .subtitle {
                 font-size: 12px !important;
                 text-align: left !important;
+                line-height: 1.6 !important;
+                letter-spacing: -0.02em;
             }
             
             .menu-title {
@@ -943,6 +984,15 @@
                 padding: 12px 20px !important;
                 font-size: 14px !important;
                 margin-bottom: 15px !important;
+            }
+            
+            .project-desc,
+            .blog-excerpt,
+            .skill-project-desc,
+            p {
+                font-size: 14px !important;
+                line-height: 1.7 !important;
+                letter-spacing: -0.02em !important;
             }
         }
         
