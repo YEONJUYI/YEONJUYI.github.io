@@ -132,20 +132,20 @@
             min-height: 0;
         }
         
-                    /* TryHackMe iframe mobile optimization */
+        /* TryHackMe iframe mobile optimization */
+        iframe[title="TryHackMe Badges"] {
+            width: 300px !important;
+            height: 60px !important;
+        }
+        
+        @media screen and (max-width: 480px) {
             iframe[title="TryHackMe Badges"] {
-                width: 300px !important;
-                height: 60px !important;
+                width: 280px !important;
+                height: 50px !important;
             }
-            
-            @media screen and (max-width: 480px) {
-                iframe[title="TryHackMe Badges"] {
-                    width: 280px !important;
-                    height: 50px !important;
-                }
-            }
-            
-            .menu-display {
+        }
+        
+        .menu-display {
             background: rgba(0, 0, 0, 0.8);
             border: 1px solid #00ff41;
             border-radius: 8px;
@@ -521,6 +521,7 @@
             font-size: 13px;
             font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
+        
         .project-skill-connection {
             display: flex;
             flex-direction: column;
@@ -615,6 +616,7 @@
         .blog-card:hover .blog-title {
             color: #00ff41 !important;
         }
+        
         @media screen and (max-width: 768px) {
             .skill-project-header {
                 flex-direction: column;
@@ -644,6 +646,7 @@
                 font-size: 12px;
             }
         }
+        
         .badge-card {
             background: rgba(0, 0, 0, 0.8);
             border: 1px solid #00cc33;
@@ -1655,7 +1658,7 @@
             }
         }
         
-        // Terminal Navigation
+        // ✅ 히스토리 네비게이션 기능 추가
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.content-section');
             const output = document.getElementById('command-output');
@@ -1665,6 +1668,9 @@
             });
             
             document.getElementById(sectionId).classList.add('active');
+            
+            // ✅ URL에 가짜 해시 추가 (히스토리 쌓기)
+            history.pushState({ section: sectionId }, '', `#${sectionId}`);
             
             // Update command output
             if (sectionId === 'main-menu') {
@@ -1676,6 +1682,37 @@
             // Clear input
             document.getElementById('command-input').value = '';
         }
+        
+        // ✅ 뒤로가기 이벤트 감지 및 섹션 이동
+        window.addEventListener('popstate', (event) => {
+            if (event.state && event.state.section) {
+                // 히스토리에서 온 섹션으로 이동 (pushState 없이)
+                const sections = document.querySelectorAll('.content-section');
+                const output = document.getElementById('command-output');
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                document.getElementById(event.state.section).classList.add('active');
+                
+                if (event.state.section === 'main-menu') {
+                    output.textContent = 'Returned to main menu';
+                } else {
+                    output.textContent = `Navigated to: ${event.state.section}`;
+                }
+                
+                document.getElementById('command-input').value = '';
+            } else {
+                // 기본적으로 메인 메뉴로 이동
+                const sections = document.querySelectorAll('.content-section');
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById('main-menu').classList.add('active');
+                document.getElementById('command-output').textContent = 'Returned to main menu';
+            }
+        });
         
         // Command Input Handler
         document.getElementById('command-input').addEventListener('keypress', function(e) {
@@ -1878,6 +1915,14 @@
             setTimeout(typeText, 1000);
             setInterval(createMatrixRain, 3000);
             handleExternalLinks();
+            
+            // ✅ 페이지 첫 로딩 시 해시값 처리
+            const initialSection = window.location.hash.replace('#', '') || 'main-menu';
+            if (initialSection !== 'main-menu') {
+                // 초기 섹션이 메인 메뉴가 아닌 경우 히스토리에 추가
+                history.replaceState({ section: initialSection }, '', `#${initialSection}`);
+            }
+            showSection(initialSection);
             
             // Focus on command input
             document.getElementById('command-input').focus();
