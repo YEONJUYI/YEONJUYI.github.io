@@ -20,6 +20,7 @@
             color: #00ff41;
             overflow: hidden;
             height: 100vh;
+            height: -webkit-fill-available;
         }
         
         /* Matrix Background */
@@ -31,12 +32,14 @@
             height: 100%;
             z-index: -1;
             opacity: 0.1;
+            pointer-events: none;
         }
         
         /* Terminal Container */
         .terminal-container {
             width: 100%;
             height: 100vh;
+            height: -webkit-fill-available;
             display: flex;
             flex-direction: column;
         }
@@ -79,9 +82,11 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.95);
             overflow-y: auto;
+            overflow-x: hidden;
             border-left: 2px solid #00ff41;
             border-right: 2px solid #00ff41;
             border-bottom: 2px solid #00ff41;
+            -webkit-overflow-scrolling: touch;
         }
         
         /* Terminal Content */
@@ -89,6 +94,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
+            min-height: 0;
         }
         
         /* Header Section */
@@ -96,6 +102,7 @@
             text-align: left;
             margin-bottom: 20px;
             padding: 10px 0;
+            flex-shrink: 0;
         }
         
         .ascii-art {
@@ -105,6 +112,7 @@
             white-space: pre;
             margin-bottom: 20px;
             font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+            overflow: hidden;
         }
         
         .intro {
@@ -132,102 +140,9 @@
             min-height: 0;
         }
         
-        /* TryHackMe iframe mobile optimization */
-        iframe[title="TryHackMe Badges"] {
-            width: 300px !important;
-            height: 60px !important;
-        }
-        
-        @media screen and (max-width: 480px) {
-            iframe[title="TryHackMe Badges"] {
-                width: 280px !important;
-                height: 50px !important;
-            }
-        }
-        
-        .menu-display {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #00ff41;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            flex: 1;
-            overflow-y: auto;
-            min-height: 200px;
-        }
-        
-        /* Menu Options */
-        .menu-options {
-            margin-bottom: 15px;
-        }
-        
-        .menu-title {
-            color: #00ff41;
-            font-size: 18px;
-            margin-bottom: 20px;
-            text-align: left;
-            text-shadow: 0 0 10px #00ff41;
-            font-family: 'JetBrains Mono', monospace !important;
-        }
-        
-        .menu-item {
-            color: #00ff41;
-            padding: 10px 15px;
-            margin: 5px 0;
-            border: 1px solid #00cc33;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(0, 255, 65, 0.05);
-            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-        }
-        
-        .menu-item:hover {
-            background: rgba(0, 255, 65, 0.2);
-            border-color: #00ff41;
-            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
-            transform: translateX(10px);
-        }
-        
-        .menu-item::before {
-            content: "[" attr(data-key) "] ";
-            color: #00cc33;
-            font-weight: bold;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        /* Content Sections */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .section-title {
-            color: #00ff41;
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px #00ff41;
-            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
-            font-weight: 500;
-        }
-        
-        .section-title::before {
-            content: "▶ ";
-            color: #00ff41;
-        }
-        
         /* Command Input */
         .command-input-area {
-            margin-top: 10px;
+            margin-bottom: 15px;
             padding: 12px;
             background: rgba(0, 0, 0, 0.9);
             border: 2px solid #00ff41;
@@ -267,6 +182,91 @@
         
         #command-output {
             font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+            color: #00cc33;
+            font-size: 12px;
+            margin-top: 10px;
+            min-height: 20px;
+        }
+        
+        /* Menu Display */
+        .menu-display {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            border-radius: 8px;
+            padding: 20px;
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 200px;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        /* Menu Options */
+        .menu-title {
+            color: #00ff41;
+            font-size: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+            text-shadow: 0 0 10px #00ff41;
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+        
+        .menu-item {
+            color: #00ff41;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border: 1px solid #00cc33;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: rgba(0, 255, 65, 0.05);
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            user-select: none;
+        }
+        
+        .menu-item:hover,
+        .menu-item:focus {
+            background: rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            transform: translateX(10px);
+            outline: none;
+        }
+        
+        .menu-item::before {
+            content: "[" attr(data-key) "] ";
+            color: #00cc33;
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            color: #00ff41;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff41;
+            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+            font-weight: 500;
+        }
+        
+        .section-title::before {
+            content: "▶ ";
+            color: #00ff41;
         }
         
         /* Typing Animation */
@@ -315,6 +315,30 @@
             border-radius: 4px;
             font-size: 12px;
             color: #00ff41;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .skill-tag.clickable {
+            cursor: pointer;
+        }
+        
+        .skill-tag.clickable:hover {
+            background: rgba(0, 255, 65, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 255, 65, 0.3);
+        }
+        
+        .skill-link-icon {
+            font-size: 10px;
+            margin-left: 4px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag.clickable:hover .skill-link-icon {
+            opacity: 1;
+            transform: scale(1.2);
         }
         
         /* Projects */
@@ -380,6 +404,7 @@
             display: flex;
             gap: 15px;
             margin-top: 15px;
+            flex-wrap: wrap;
         }
         
         .project-link {
@@ -399,25 +424,6 @@
             transform: translateY(-2px);
         }
         
-        /* Skill Link Icons */
-        .skill-link-icon {
-            font-size: 10px;
-            margin-left: 4px;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-tag:hover .skill-link-icon {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        
-        .skill-tag:hover {
-            background: rgba(0, 255, 65, 0.3) !important;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 255, 65, 0.3);
-        }
-        
         /* Skill Details Popup */
         .skill-details-popup {
             position: fixed;
@@ -431,6 +437,7 @@
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(5px);
+            padding: 20px;
         }
         
         .skill-details-content {
@@ -439,8 +446,8 @@
             border-radius: 12px;
             padding: 25px;
             max-width: 500px;
-            width: 90%;
-            max-height: 70vh;
+            width: 100%;
+            max-height: 80vh;
             overflow-y: auto;
             box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
             animation: popupAppear 0.3s ease;
@@ -594,59 +601,7 @@
             font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
         }
         
-        /* Blog Link Icons */
-        .blog-link-icon {
-            font-size: 12px;
-            margin-left: 5px;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-        }
-        
-        .blog-card:hover .blog-link-icon {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        
-        .blog-card:hover {
-            border-color: #00ff41 !important;
-            box-shadow: 0 0 25px rgba(0, 255, 65, 0.4) !important;
-            transform: translateY(-3px) !important;
-        }
-        
-        .blog-card:hover .blog-title {
-            color: #00ff41 !important;
-        }
-        
-        @media screen and (max-width: 768px) {
-            .skill-project-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .skill-project-arrow {
-                transform: rotate(90deg);
-                align-self: center;
-            }
-            
-            .skill-project-card {
-                padding: 12px;
-            }
-            
-            .skill-project-skill {
-                font-size: 11px;
-                padding: 3px 6px;
-            }
-            
-            .skill-project-name {
-                font-size: 13px;
-            }
-            
-            .skill-project-desc {
-                font-size: 12px;
-            }
-        }
-        
+        /* Badges */
         .badge-card {
             background: rgba(0, 0, 0, 0.8);
             border: 1px solid #00cc33;
@@ -675,10 +630,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         
         .badge-info {
             flex: 1;
+            min-width: 0;
         }
         
         .badge-info h4 {
@@ -703,6 +660,7 @@
         
         .badge-status {
             font-size: 18px;
+            flex-shrink: 0;
         }
         
         .badge-status.completed {
@@ -729,6 +687,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         
         .blog-card::before {
@@ -798,6 +757,22 @@
             border: 1px solid rgba(0, 255, 65, 0.3);
         }
         
+        .blog-link-icon {
+            font-size: 12px;
+            margin-left: 5px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-card:hover .blog-link-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        .blog-card:hover .blog-title {
+            color: #00ff41;
+        }
+        
         /* Contact */
         .contact-item {
             background: rgba(0, 0, 0, 0.7);
@@ -820,7 +795,7 @@
             font-size: 14px;
         }
         
-        /* Matrix rain effect */
+        /* Matrix Animation */
         .matrix-char {
             position: absolute;
             color: #00ff41;
@@ -828,6 +803,7 @@
             font-size: 14px;
             animation: matrix-fall linear infinite;
             opacity: 0.7;
+            pointer-events: none;
         }
         
         @keyframes matrix-fall {
@@ -853,190 +829,285 @@
             font-size: 12px;
             margin-bottom: 20px;
             transition: all 0.3s ease;
+            user-select: none;
         }
         
-        .back-button:hover {
+        .back-button:hover,
+        .back-button:focus {
             background: rgba(0, 255, 65, 0.2);
             box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            outline: none;
         }
         
-        /* 한글 텍스트 요소들 */
-        p, li, div {
-            font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-            line-height: 1.6;
+        /* TryHackMe iframe responsive */
+        .thm-badge-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            border-radius: 8px;
         }
         
-        /* Mobile-first approach */
-        .header-section {
-            text-align: left !important;
-            margin-bottom: 20px;
-            padding: 10px 0;
+        .thm-badge-container h4 {
+            color: #00ff41;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
         
-        .ascii-art {
-            text-align: left !important;
+        .thm-badge-frame {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
         }
         
-        .intro {
-            text-align: left !important;
+        .thm-badge-frame iframe {
+            border: none;
+            width: 420px;
+            height: 80px;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            max-width: 100%;
         }
         
-        .subtitle {
-            text-align: left !important;
+        .thm-badge-container p {
+            color: #00cc33;
+            font-size: 12px;
+            margin-top: 8px;
         }
         
-        .menu-title {
-            text-align: left !important;
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
         }
         
-        /* Mobile specific fixes */
+        /* Focus styles */
+        button:focus,
+        .menu-item:focus,
+        .skill-tag.clickable:focus,
+        .project-link:focus,
+        .back-button:focus {
+            outline: 2px solid #00ff41;
+            outline-offset: 2px;
+        }
+        
+        /* Mobile Optimizations */
         @media screen and (max-width: 768px) {
-            body {
-                height: 100vh;
-                height: -webkit-fill-available;
-                overflow: hidden;
-            }
-            
-            .terminal-container {
-                height: 100vh;
-                height: -webkit-fill-available;
-            }
-            
             .terminal-body {
-                padding: 10px !important;
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .header-section {
-                text-align: left !important;
-                margin-bottom: 15px !important;
+                padding: 10px;
             }
             
             .ascii-art {
-                font-size: 6px !important;
-                text-align: left !important;
-                margin-bottom: 10px !important;
+                font-size: 6px;
+                margin-bottom: 10px;
             }
             
             .intro {
-                font-size: 14px !important;
-                text-align: left !important;
-                line-height: 1.6 !important;
+                font-size: 14px;
+                line-height: 1.6;
                 letter-spacing: -0.02em;
             }
             
             .subtitle {
-                font-size: 12px !important;
-                text-align: left !important;
-                line-height: 1.6 !important;
+                font-size: 12px;
+                line-height: 1.6;
                 letter-spacing: -0.02em;
             }
             
             .menu-title {
-                font-size: 16px !important;
-                text-align: left !important;
-                margin-bottom: 15px !important;
+                font-size: 16px;
+                margin-bottom: 15px;
             }
             
             .command-input-area {
-                position: sticky !important;
-                top: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
-                margin: 0 0 10px 0 !important;
-                padding: 8px 12px !important;
-                background: rgba(0, 0, 0, 0.95) !important;
-                border: 1px solid #00ff41 !important;
-                border-radius: 0 0 6px 6px !important;
-                z-index: 1000 !important;
-                box-shadow: 0 3px 15px rgba(0, 255, 65, 0.2) !important;
+                position: sticky;
+                top: 0;
+                margin: 0 0 10px 0;
+                padding: 8px 12px;
+                background: rgba(0, 0, 0, 0.95);
+                border: 1px solid #00ff41;
+                border-radius: 0 0 6px 6px;
+                z-index: 1000;
+                box-shadow: 0 3px 15px rgba(0, 255, 65, 0.2);
             }
             
             .command-line {
-                margin-bottom: 5px !important;
+                margin-bottom: 5px;
             }
             
             .prompt {
-                font-size: 11px !important;
-                margin-right: 8px !important;
+                font-size: 11px;
+                margin-right: 8px;
             }
             
             .command-input {
-                font-size: 14px !important;
-                padding: 4px 6px !important;
-                border: 1px solid #00ff41 !important;
-                border-radius: 3px !important;
-                background: rgba(0, 0, 0, 0.8) !important;
+                font-size: 14px;
+                padding: 4px 6px;
+                border: 1px solid #00ff41;
+                border-radius: 3px;
+                background: rgba(0, 0, 0, 0.8);
             }
             
             #command-output {
-                font-size: 10px !important;
-                margin-top: 5px !important;
+                font-size: 10px;
+                margin-top: 5px;
             }
             
             .menu-item {
-                padding: 15px !important;
-                margin: 10px 0 !important;
-                font-size: 16px !important;
-                text-align: left !important;
-                border-width: 2px !important;
+                padding: 15px;
+                margin: 10px 0;
+                font-size: 16px;
+                border-width: 2px;
             }
             
             .back-button {
-                padding: 12px 20px !important;
-                font-size: 14px !important;
-                margin-bottom: 15px !important;
+                padding: 12px 20px;
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .skill-project-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .skill-project-arrow {
+                transform: rotate(90deg);
+                align-self: center;
+            }
+            
+            .skill-project-card {
+                padding: 12px;
+            }
+            
+            .skill-project-skill {
+                font-size: 11px;
+                padding: 3px 6px;
+            }
+            
+            .skill-project-name {
+                font-size: 13px;
+            }
+            
+            .skill-project-desc {
+                font-size: 12px;
             }
             
             .project-desc,
             .blog-excerpt,
-            .skill-project-desc,
             p {
-                font-size: 14px !important;
-                line-height: 1.7 !important;
-                letter-spacing: -0.02em !important;
+                font-size: 14px;
+                line-height: 1.7;
+                letter-spacing: -0.02em;
+            }
+            
+            .thm-badge-frame iframe {
+                width: 280px;
+                height: 50px;
+            }
+            
+            .badge-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .badge-info {
+                text-align: left;
+            }
+            
+            .project-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .project-link {
+                text-align: center;
             }
         }
         
         /* Very small mobile */
         @media screen and (max-width: 480px) {
             .ascii-art {
-                font-size: 5px !important;
+                font-size: 5px;
             }
             
             .intro {
-                font-size: 12px !important;
+                font-size: 12px;
             }
             
             .subtitle {
-                font-size: 11px !important;
+                font-size: 11px;
             }
             
             .command-input-area {
-                padding: 12px !important;
+                padding: 12px;
+            }
+            
+            .skill-details-content {
+                padding: 15px;
+                margin: 10px;
+            }
+            
+            .thm-badge-frame iframe {
+                width: 250px;
+                height: 45px;
+            }
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .typing {
+                animation: none;
+                border-right: 2px solid #00ff41;
+            }
+            
+            .matrix-char {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="matrix-bg" id="matrix"></div>
+    <div class="matrix-bg" id="matrix" aria-hidden="true"></div>
     
     <div class="terminal-container">
-        <div class="terminal-header">
-            <div class="terminal-buttons">
+        <header class="terminal-header">
+            <div class="terminal-buttons" aria-hidden="true">
                 <div class="btn close"></div>
                 <div class="btn minimize"></div>
                 <div class="btn maximize"></div>
             </div>
             <div class="terminal-title">qu1cks1lv37@security-terminal</div>
-        </div>
+        </header>
         
-        <div class="terminal-body">
+        <main class="terminal-body">
             <div class="terminal-content">
                 <!-- Header Section -->
-                <div class="header-section">
-                    <div class="ascii-art" style="text-align: left;">
+                <section class="header-section">
+                    <div class="ascii-art" aria-label="qu1cks1lv37 ASCII Art">
 ██████╗ ██╗   ██╗ ██╗ ██████╗██╗  ██╗███████╗██╗██╗    ██╗   ██╗██████╗ ███████╗
 ██╔═══██╗██║   ██║███║██╔════╝██║ ██╔╝██╔════╝██║██║    ██║   ██║╚════██╗╚════██║
 ██║   ██║██║   ██║╚██║██║     █████╔╝ ███████╗██║██║    ██║   ██║ █████╔╝    ██╔╝
@@ -1044,43 +1115,49 @@
 ╚██████╔╝╚██████╔╝ ██║╚██████╗██║  ██╗███████║██║███████╗ ╚████╔╝ ██████╔╝   ██║  
  ╚══▀▀═╝  ╚═════╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝╚══════╝  ╚═══╝  ╚═════╝    ╚═╝
                     </div>
-                    <div class="intro" style="text-align: left;">
-                        <span class="typing" id="typing-text"></span>
+                    <div class="intro">
+                        <span class="typing" id="typing-text" aria-live="polite"></span>
                     </div>
-                    <div class="subtitle" style="text-align: left;">Security-focused Developer | Cyber Security Student</div>
-                </div>
+                    <div class="subtitle">Security-focused Developer | Cyber Security Student</div>
+                </section>
                 
                 <!-- Menu Section -->
-                <div class="menu-section">
-                    <!-- Command Input - 위쪽으로 이동 -->
+                <section class="menu-section">
+                    <!-- Command Input -->
                     <div class="command-input-area">
                         <div class="command-line">
-                            <span class="prompt">qu1cks1lv37@security:~$</span>
-                            <input type="text" class="command-input" id="command-input" placeholder="Type menu number (1-6) or 'help'" autocomplete="off">
+                            <span class="prompt" aria-hidden="true">qu1cks1lv37@security:~$</span>
+                            <label for="command-input" class="sr-only">Command input</label>
+                            <input type="text" 
+                                   class="command-input" 
+                                   id="command-input" 
+                                   placeholder="Type menu number (1-7) or 'help'" 
+                                   autocomplete="off"
+                                   aria-describedby="command-output">
                         </div>
-                        <div id="command-output" style="color: #00cc33; font-size: 12px; margin-top: 10px;"></div>
+                        <div id="command-output" aria-live="polite"></div>
                     </div>
                     
                     <div class="menu-display">
                         <!-- Main Menu -->
                         <div id="main-menu" class="content-section active">
-                            <div class="menu-title">== SECURITY TERMINAL MENU ==</div>
-                            <div class="menu-options">
-                                <div class="menu-item" data-key="1" onclick="showSection('about')">About Me</div>
-                                <div class="menu-item" data-key="2" onclick="showSection('skills')">Skills & Arsenal</div>
-                                <div class="menu-item" data-key="3" onclick="showSection('projects')">Projects</div>
-                                <div class="menu-item" data-key="4" onclick="showSection('certifications')">Certifications & Academic Plans</div>
-                                <div class="menu-item" data-key="5" onclick="showSection('tryhackme')">TryHackMe Progress</div>
-                                <div class="menu-item" data-key="6" onclick="showSection('blog')">Blog Posts</div>
-                                <div class="menu-item" data-key="7" onclick="showSection('contact')">Contact</div>
-                                <div class="menu-item" data-key="0" onclick="showSection('main-menu')">Refresh Terminal</div>
-                            </div>
+                            <h2 class="menu-title">== SECURITY TERMINAL MENU ==</h2>
+                            <nav class="menu-options" role="navigation" aria-label="Main navigation">
+                                <div class="menu-item" data-key="1" tabindex="0" role="button" aria-label="About Me section">About Me</div>
+                                <div class="menu-item" data-key="2" tabindex="0" role="button" aria-label="Skills and Arsenal section">Skills & Arsenal</div>
+                                <div class="menu-item" data-key="3" tabindex="0" role="button" aria-label="Projects section">Projects</div>
+                                <div class="menu-item" data-key="4" tabindex="0" role="button" aria-label="Certifications and Academic Plans section">Certifications & Academic Plans</div>
+                                <div class="menu-item" data-key="5" tabindex="0" role="button" aria-label="TryHackMe Progress section">TryHackMe Progress</div>
+                                <div class="menu-item" data-key="6" tabindex="0" role="button" aria-label="Blog Posts section">Blog Posts</div>
+                                <div class="menu-item" data-key="7" tabindex="0" role="button" aria-label="Contact section">Contact</div>
+                                <div class="menu-item" data-key="0" tabindex="0" role="button" aria-label="Refresh Terminal">Refresh Terminal</div>
+                            </nav>
                         </div>
                         
                         <!-- About Section -->
                         <div id="about" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">About Me</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">About Me</h2>
                             <div style="color: #cccccc; line-height: 1.6; font-size: 14px;">
                                 <p style="margin-bottom: 15px;">
                                   안녕하세요. 사이버보안과에 재학 중인 이연주(qu1cks1lv37)입니다.<br>
@@ -1104,54 +1181,54 @@
                         
                         <!-- Skills Section -->
                         <div id="skills" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">Skills & Arsenal</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">Skills & Arsenal</h2>
                             <div class="skills-grid">
                                 <div class="skill-category">
                                     <h4>Languages</h4>
                                     <div class="skill-tags">
-                                        <span class="skill-tag" onclick="showSkillDetails('python')" style="cursor: pointer;">
-                                            Python <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="python" tabindex="0" role="button">
+                                            Python <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
                                         <span class="skill-tag">Java</span>
-                                        <span class="skill-tag" onclick="showSkillDetails('web')" style="cursor: pointer;">
-                                            HTML <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="web" tabindex="0" role="button">
+                                            HTML <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
-                                        <span class="skill-tag" onclick="showSkillDetails('web')" style="cursor: pointer;">
-                                            CSS <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="web" tabindex="0" role="button">
+                                            CSS <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="skill-category">
                                     <h4>Security Tools</h4>
                                     <div class="skill-tags">
-                                        <span class="skill-tag" onclick="showSkillDetails('burpsuite')" style="cursor: pointer;">
-                                            Burp Suite <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="burpsuite" tabindex="0" role="button">
+                                            Burp Suite <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
-                                        <span class="skill-tag" onclick="showSkillDetails('wireshark')" style="cursor: pointer;">
-                                            Wireshark <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="wireshark" tabindex="0" role="button">
+                                            Wireshark <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
-                                        <span class="skill-tag" onclick="showSkillDetails('nmap')" style="cursor: pointer;">
-                                            nmap <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="nmap" tabindex="0" role="button">
+                                            nmap <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="skill-category">
                                     <h4>Frameworks</h4>
                                     <div class="skill-tags">
-                                        <span class="skill-tag" onclick="showSkillDetails('flask')" style="cursor: pointer;">
-                                            Flask <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="flask" tabindex="0" role="button">
+                                            Flask <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
-                                        <span class="skill-tag" onclick="showSkillDetails('react')" style="cursor: pointer;">
-                                            React <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="react" tabindex="0" role="button">
+                                            React <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="skill-category">
                                     <h4>OS & Tools</h4>
                                     <div class="skill-tags">
-                                        <span class="skill-tag" onclick="showSkillDetails('ubuntu')" style="cursor: pointer;">
-                                            Ubuntu <span class="skill-link-icon">🔗</span>
+                                        <span class="skill-tag clickable" data-skill="ubuntu" tabindex="0" role="button">
+                                            Ubuntu <span class="skill-link-icon" aria-hidden="true">🔗</span>
                                         </span>
                                         <span class="skill-tag">Windows</span>
                                         <span class="skill-tag">Git</span>
@@ -1160,18 +1237,7 @@
                                 </div>
                             </div>
                             
-                            <!-- 스킬 상세 정보 팝업 -->
-                            <div id="skill-details" class="skill-details-popup" style="display: none;">
-                                <div class="skill-details-content">
-                                    <div class="skill-details-header">
-                                        <h4 id="skill-details-title"></h4>
-                                        <button class="skill-details-close" onclick="hideSkillDetails()">✕</button>
-                                    </div>
-                                    <div id="skill-details-body"></div>
-                                </div>
-                            </div>
-                            
-                            <!-- 기존 주요 적용 프로젝트 섹션도 유지 -->
+                            <!-- Main Project Connections -->
                             <div style="margin-top: 40px;">
                                 <h4 style="color: #00ff41; margin-bottom: 20px; font-size: 16px;">🔗 주요 적용 프로젝트</h4>
                                 
@@ -1179,7 +1245,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">Python + Flask</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">CryptoMatch</span>
                                         </div>
                                         <p class="skill-project-desc">보안 성향 테스트 웹앱의 백엔드 로직 및 암호화 알고리즘 추천 시스템 구현</p>
@@ -1188,7 +1254,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">Rust + React + TypeScript</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">NoteCrypt</span>
                                         </div>
                                         <p class="skill-project-desc">군사급 보안 수준의 데스크톱 애플리케이션, ChaCha20-Poly1305 암호화 구현</p>
@@ -1197,7 +1263,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">Nmap + Ubuntu</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">네트워크 보안 분석</span>
                                         </div>
                                         <p class="skill-project-desc">UTM 환경에서 Ubuntu Server 취약점 스캔 및 보안 분석 실습 (Velog 포스팅)</p>
@@ -1206,7 +1272,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">VirtualBox + CLI</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">시스템 관리</span>
                                         </div>
                                         <p class="skill-project-desc">Ubuntu CLI 기반 시스템 관리 및 보안 설정 실습 시리즈</p>
@@ -1215,7 +1281,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">journalctl + 로그분석</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">보안 모니터링</span>
                                         </div>
                                         <p class="skill-project-desc">시스템 로그 분석을 통한 root 권한 획득 시도 탐지 및 모니터링 구현</p>
@@ -1224,7 +1290,7 @@
                                     <div class="skill-project-card">
                                         <div class="skill-project-header">
                                             <span class="skill-project-skill">TryHackMe Rooms</span>
-                                            <span class="skill-project-arrow">→</span>
+                                            <span class="skill-project-arrow" aria-hidden="true">→</span>
                                             <span class="skill-project-name">실전 해킹 실습</span>
                                         </div>
                                         <p class="skill-project-desc">윈도우 기본, 침투 테스트, 보안 원칙 등 7개 룸 완료 및 실습 기록</p>
@@ -1232,171 +1298,170 @@
                                 </div>
                             </div>
                         </div>
-                        
-<!-- Projects Section -->
-<div id="projects" class="content-section">
-   <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-   <div class="section-title">Projects</div>
 
-   <div class="project">
-       <div class="project-title">🛡️ OWASP 보안원칙 기반 종합 기업 정보보안 가이드</div>
-       <div class="project-desc">
-           기업 정보보안 환경을 대상으로 한 <strong>완전 통합형 보안 관리 가이드라인</strong>입니다. 
-           OWASP 보안 원칙을 실제 기업 환경에 적용하여 기술 유출 방지부터 안전한 채용까지 전 영역을 체계적으로 다루며, 기업 수준의 상세한 보안 정책과 실무 매뉴얼을 제공하는 종합 정보보안 문서입니다.
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">Information Security Policy</span>
-           <span class="tech-tag">OWASP Framework</span>
-           <span class="tech-tag">Enterprise Security</span>
-           <span class="tech-tag">Risk Management</span>
-           <span class="tech-tag">Security Governance</span>
-           <span class="tech-tag">HR Security</span>
-       </div>
-       <div class="project-links">
-           <a href="https://drive.google.com/file/d/1UPH9Gyp1kVEFyCtl8PXuC174Q73KhvEW/view?usp=sharing" class="project-link" target="_blank">📋 Complete Guide Document</a>
-       </div>
-   </div>
+                        <!-- Projects Section -->
+                        <div id="projects" class="content-section">
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">Projects</h2>
 
-   <div class="project">
-       <div class="project-title">🎯 SilverStrike - 자동화된 네트워크 침투 테스트 플랫폼</div>
-       <div class="project-desc">
-           기업 네트워크 환경을 대상으로 한 <strong>완전 자동화된 침투 테스트 도구</strong>입니다. 
-           SilverStrike는 실제 해커의 공격 시나리오를 단계별로 시뮬레이션하여 네트워크 보안 취약점을 자동으로 탐지하고, 기업 수준의 상세한 보안 진단 보고서를 생성하는 Python 기반 보안 플랫폼입니다.
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">Python</span>
-           <span class="tech-tag">Socket Programming</span>
-           <span class="tech-tag">Multi-threading</span>
-           <span class="tech-tag">Cybersecurity</span>
-           <span class="tech-tag">Penetration Testing</span>
-           <span class="tech-tag">Network Security</span>
-       </div>
-       <div style="color: #cccccc; margin: 15px 0;">
-           <strong style="color: #00ff41;">핵심 기능:</strong><br>
-           • 완전 자동화된 5단계 침투 프로세스 - Discovery부터 Reporting까지 원클릭 실행<br>
-           • 기업 네트워크 특화 공격 모듈 - SMB, Kerberos, Active Directory 환경 전용 공격 벡터<br>
-           • 지능형 공격 체인 - 이전 단계 결과에 따른 동적 공격 경로 변경 및 최적화<br>
-           • 순수 Python 네트워크 스캐너 - nmap 의존성 제거, 멀티쓰레딩 기반 고성능 포트 스캔<br>
-           • 기업용 보고서 자동 생성 - JSON 구조화된 취약점 분석 및 보안 권장사항 제공<br>
-           • 모듈러 확장 구조 - 새로운 공격 기법과 시나리오 플러그인 방식 추가 가능<br><br>
-           <strong style="color: #00ff41;">개발 성과:</strong><br>
-           • 52초 내 전체 침투 테스트 완료 - 네트워크 탐지부터 보고서 생성까지 완전 자동화<br>
-           • 실무급 보안 도구 수준 달성 - 기업 환경에서 실제 사용 가능한 침투 테스트 플랫폼 구현<br>
-           • 90% 시간 단축 효과 - 수동 침투 테스트 대비 대폭적인 효율성 개선 달성<br>
-           • 15개 핵심 포트 정밀 분석 - TCP 소켓 프로그래밍 기반 고정밀 서비스 탐지 및 배너 그래빙<br>
-           • 기업 수준 기술 문서화 - 상세한 아키텍처 분석과 ROI 산정까지 포함한 전문 보고서 작성<br>
-           • 교육 및 실무 양용 설계 - 단계별 학습 가능하면서도 실제 보안 진단에 활용 가능한 구조
-       </div>
-       <div class="project-links">
-           <a href="https://github.com/YEONJUYI/Silverstrike" class="project-link" target="_blank">🔗 GitHub Repository</a>
-           <a href="https://drive.google.com/file/d/1LTPNXVQD-B4r43c6DWZzfaCxEiTJWgVH/view?usp=drive_link" class="project-link" target="_blank">📊 Technical Report</a>
-           <a href="https://drive.google.com/file/d/16o6ZZt8L85WLyZFSHh-6gIWHE3Moyg-7/view?usp=drive_link" class="project-link" target="_blank">🎯 Live Demo</a>
-       </div>
-   </div>
-   
-   <div class="project">
-       <div class="project-title">🎮 GameWalks - Steam 게임 공략 종합 플랫폼</div>
-       <div class="project-desc">
-           Steam 게임들의 공략 정보를 체계적으로 제공하는 <strong>게임 정보 종합 플랫폼</strong>입니다. 
-           Steam Spy API와 연동하여 실시간 게임 통계 데이터를 활용하며, 사용자들이 다양한 게임의 공략과 정보를 쉽게 찾을 수 있도록 설계된 웹 서비스입니다.
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">Steam API</span>
-           <span class="tech-tag">Steam Spy API</span>
-           <span class="tech-tag">Real-time Data</span>
-           <span class="tech-tag">Game Analytics</span>
-           <span class="tech-tag">Web Development</span>
-           <span class="tech-tag">API Integration</span>
-       </div>
-       <div class="project-links">
-           <a href="https://gamewalks.kr" class="project-link" target="_blank">🎮 Live Service</a>
-       </div>
-   </div>
-   
-   <div class="project">
-       <div class="project-title">🎮 Neural Division - 사이버펑크 터미널 해킹 게임</div>
-       <div class="project-desc">
-           사이버펑크 세계관의 <strong>인터랙티브 터미널 해킹 시뮬레이터</strong>입니다. 
-           Neural Division에서 발견된 정체불명의 "Phantom Signal"을 조사하며, 터미널 명령어와 ASCII 네트워크 지도를 통해 진실을 밝혀내는 스토리 기반 게임입니다.
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">React</span>
-           <span class="tech-tag">JavaScript</span>
-           <span class="tech-tag">Tailwind CSS</span>
-           <span class="tech-tag">Vercel</span>
-           <span class="tech-tag">Interactive Terminal</span>
-           <span class="tech-tag">ASCII Art</span>
-       </div>
-       <div style="color: #cccccc; margin: 15px 0;">
-           <strong style="color: #00ff41;">주요 기능:</strong><br>
-           • 실시간 터미널 인터페이스 및 타이핑 애니메이션<br>
-           • 3단계 미션 시스템과 5개 단서 수집 메커니즘<br>
-           • ASCII 아트 기반 비주얼 네트워크 해킹 모드<br>
-           • 가상 파일 시스템과 디렉터리 탐색 기능<br><br>
-           <strong style="color: #00ff41;">게임플레이:</strong><br>
-           • 터미널 명령어로 시스템 탐색 (ls, cd, cat 등)<br>
-           • mind_dive로 권한 상승 후 기밀 파일 접근<br>
-           • visual_hack으로 네트워크 지도 모드 전환<br>
-           • 스토리 진행에 따른 동적 콘텐츠 변화
-       </div>
-       <div class="project-links">
-           <a href="https://n-div-test-sltr.vercel.app/" class="project-link" target="_blank">🎯 Live Beta Play</a>
-       </div>
-   </div>
-   
-   <div class="project">
-       <div class="project-title">🧠 CryptoMatch - 보안 성향 테스트 웹앱</div>
-       <div class="project-desc">
-           심리 테스트로 나의 보안 성향을 알아보고, 맞춤형 암호화 알고리즘을 추천받는 서비스
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">Flask</span>
-           <span class="tech-tag">HTML/CSS</span>
-           <span class="tech-tag">JavaScript</span>
-           <span class="tech-tag">Render</span>
-       </div>
-       <div class="project-links">
-           <a href="https://cryptomatch-v11.vercel.app" class="project-link" target="_blank">🔗 Live Demo</a>
-           <a href="https://drive.google.com/file/d/1hfK8d_3BH-BZIj9B-sco7mzZwjhvZvWH/view?usp=drive_link" class="project-link" target="_blank">📝 Report</a>
-       </div>
-   </div>
-   
-   <div class="project">
-       <div class="project-title">📓 NoteCrypt - 군사급 보안 수준의 개인 노트 관리 시스템</div>
-       <div class="project-desc">
-           군사급 보안 요건을 만족하는 고급 개인 노트 앱으로, <strong>Tauri 기반의 데스크탑 보안 애플리케이션</strong>입니다. 
-           암호화, 메모리 보호, 디버깅 방지 기능 등을 직접 구현했습니다.
-       </div>
-       <div class="project-tech">
-           <span class="tech-tag">Tauri</span>
-           <span class="tech-tag">Rust</span>
-           <span class="tech-tag">React</span>
-           <span class="tech-tag">TypeScript</span>
-           <span class="tech-tag">ChaCha20-Poly1305</span>
-           <span class="tech-tag">Argon2</span>
-           <span class="tech-tag">TPM</span>
-       </div>
-       <div style="color: #cccccc; margin: 15px 0;">
-           <strong style="color: #00ff41;">핵심 기능:</strong><br>
-           • 메모 암호화/복호화, 즐겨찾기, 삭제, 보안 타이머<br>
-           • 마스터 패스워드 기반 접근 제어<br>
-           • 메모리 제로화, 디버거 탐지, 하드웨어 보안 모듈 연동<br><br>
-           <strong style="color: #00ff41;">성과:</strong><br>
-           • 메모리 사용량 75% 절약, 암호화 성능 3.4배 향상<br>
-           • OWASP 및 NIST 보안 가이드라인 반영한 구조 설계
-       </div>
-       <div class="project-links">
-           <a href="https://drive.google.com/file/d/1PFlfvj6BUI7Z2zn1GZnn_AS4PxKpJWea/view?usp=drive_link" class="project-link" target="_blank">📊 웹앱 vs Tauri 기술 비교 분석 보고서</a>
-       </div>
-   </div>
-</div>
+                            <article class="project">
+                                <h3 class="project-title">🛡️ OWASP 보안원칙 기반 종합 기업 정보보안 가이드</h3>
+                                <div class="project-desc">
+                                    기업 정보보안 환경을 대상으로 한 <strong>완전 통합형 보안 관리 가이드라인</strong>입니다. 
+                                    OWASP 보안 원칙을 실제 기업 환경에 적용하여 기술 유출 방지부터 안전한 채용까지 전 영역을 체계적으로 다루며, 기업 수준의 상세한 보안 정책과 실무 매뉴얼을 제공하는 종합 정보보안 문서입니다.
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Information Security Policy</span>
+                                    <span class="tech-tag">OWASP Framework</span>
+                                    <span class="tech-tag">Enterprise Security</span>
+                                    <span class="tech-tag">Risk Management</span>
+                                    <span class="tech-tag">Security Governance</span>
+                                    <span class="tech-tag">HR Security</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://drive.google.com/file/d/1UPH9Gyp1kVEFyCtl8PXuC174Q73KhvEW/view?usp=sharing" class="project-link" target="_blank" rel="noopener">📋 Complete Guide Document</a>
+                                </div>
+                            </article>
+
+                            <article class="project">
+                                <h3 class="project-title">🎯 SilverStrike - 자동화된 네트워크 침투 테스트 플랫폼</h3>
+                                <div class="project-desc">
+                                    기업 네트워크 환경을 대상으로 한 <strong>완전 자동화된 침투 테스트 도구</strong>입니다. 
+                                    SilverStrike는 실제 해커의 공격 시나리오를 단계별로 시뮬레이션하여 네트워크 보안 취약점을 자동으로 탐지하고, 기업 수준의 상세한 보안 진단 보고서를 생성하는 Python 기반 보안 플랫폼입니다.
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Socket Programming</span>
+                                    <span class="tech-tag">Multi-threading</span>
+                                    <span class="tech-tag">Cybersecurity</span>
+                                    <span class="tech-tag">Penetration Testing</span>
+                                    <span class="tech-tag">Network Security</span>
+                                </div>
+                                <div style="color: #cccccc; margin: 15px 0;">
+                                    <strong style="color: #00ff41;">핵심 기능:</strong><br>
+                                    • 완전 자동화된 5단계 침투 프로세스 - Discovery부터 Reporting까지 원클릭 실행<br>
+                                    • 기업 네트워크 특화 공격 모듈 - SMB, Kerberos, Active Directory 환경 전용 공격 벡터<br>
+                                    • 지능형 공격 체인 - 이전 단계 결과에 따른 동적 공격 경로 변경 및 최적화<br>
+                                    • 순수 Python 네트워크 스캐너 - nmap 의존성 제거, 멀티쓰레딩 기반 고성능 포트 스캔<br>
+                                    • 기업용 보고서 자동 생성 - JSON 구조화된 취약점 분석 및 보안 권장사항 제공<br>
+                                    • 모듈러 확장 구조 - 새로운 공격 기법과 시나리오 플러그인 방식 추가 가능<br><br>
+                                    <strong style="color: #00ff41;">개발 성과:</strong><br>
+                                    • 52초 내 전체 침투 테스트 완료 - 네트워크 탐지부터 보고서 생성까지 완전 자동화<br>
+                                    • 실무급 보안 도구 수준 달성 - 기업 환경에서 실제 사용 가능한 침투 테스트 플랫폼 구현<br>
+                                    • 90% 시간 단축 효과 - 수동 침투 테스트 대비 대폭적인 효율성 개선 달성<br>
+                                    • 15개 핵심 포트 정밀 분석 - TCP 소켓 프로그래밍 기반 고정밀 서비스 탐지 및 배너 그래빙<br>
+                                    • 기업 수준 기술 문서화 - 상세한 아키텍처 분석과 ROI 산정까지 포함한 전문 보고서 작성<br>
+                                    • 교육 및 실무 양용 설계 - 단계별 학습 가능하면서도 실제 보안 진단에 활용 가능한 구조
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/YEONJUYI/Silverstrike" class="project-link" target="_blank" rel="noopener">🔗 GitHub Repository</a>
+                                    <a href="https://drive.google.com/file/d/1LTPNXVQD-B4r43c6DWZzfaCxEiTJWgVH/view?usp=drive_link" class="project-link" target="_blank" rel="noopener">📊 Technical Report</a>
+                                    <a href="https://drive.google.com/file/d/16o6ZZt8L85WLyZFSHh-6gIWHE3Moyg-7/view?usp=drive_link" class="project-link" target="_blank" rel="noopener">🎯 Live Demo</a>
+                                </div>
+                            </article>
+                            
+                            <article class="project">
+                                <h3 class="project-title">🎮 GameWalks - Steam 게임 공략 종합 플랫폼</h3>
+                                <div class="project-desc">
+                                    Steam 게임들의 공략 정보를 체계적으로 제공하는 <strong>게임 정보 종합 플랫폼</strong>입니다. 
+                                    Steam Spy API와 연동하여 실시간 게임 통계 데이터를 활용하며, 사용자들이 다양한 게임의 공략과 정보를 쉽게 찾을 수 있도록 설계된 웹 서비스입니다.
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Steam API</span>
+                                    <span class="tech-tag">Steam Spy API</span>
+                                    <span class="tech-tag">Real-time Data</span>
+                                    <span class="tech-tag">Game Analytics</span>
+                                    <span class="tech-tag">Web Development</span>
+                                    <span class="tech-tag">API Integration</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://gamewalks.kr" class="project-link" target="_blank" rel="noopener">🎮 Live Service</a>
+                                </div>
+                            </article>
+                            
+                            <article class="project">
+                                <h3 class="project-title">🎮 Neural Division - 사이버펑크 터미널 해킹 게임</h3>
+                                <div class="project-desc">
+                                    사이버펑크 세계관의 <strong>인터랙티브 터미널 해킹 시뮬레이터</strong>입니다. 
+                                    Neural Division에서 발견된 정체불명의 "Phantom Signal"을 조사하며, 터미널 명령어와 ASCII 네트워크 지도를 통해 진실을 밝혀내는 스토리 기반 게임입니다.
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Tailwind CSS</span>
+                                    <span class="tech-tag">Vercel</span>
+                                    <span class="tech-tag">Interactive Terminal</span>
+                                    <span class="tech-tag">ASCII Art</span>
+                                </div>
+                                <div style="color: #cccccc; margin: 15px 0;">
+                                    <strong style="color: #00ff41;">주요 기능:</strong><br>
+                                    • 실시간 터미널 인터페이스 및 타이핑 애니메이션<br>
+                                    • 3단계 미션 시스템과 5개 단서 수집 메커니즘<br>
+                                    • ASCII 아트 기반 비주얼 네트워크 해킹 모드<br>
+                                    • 가상 파일 시스템과 디렉터리 탐색 기능<br><br>
+                                    <strong style="color: #00ff41;">게임플레이:</strong><br>
+                                    • 터미널 명령어로 시스템 탐색 (ls, cd, cat 등)<br>
+                                    • mind_dive로 권한 상승 후 기밀 파일 접근<br>
+                                    • visual_hack으로 네트워크 지도 모드 전환<br>
+                                    • 스토리 진행에 따른 동적 콘텐츠 변화
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://n-div-test-sltr.vercel.app/" class="project-link" target="_blank" rel="noopener">🎯 Live Beta Play</a>
+                                </div>
+                            </article>
+                            
+                            <article class="project">
+                                <h3 class="project-title">🧠 CryptoMatch - 보안 성향 테스트 웹앱</h3>
+                                <div class="project-desc">
+                                    심리 테스트로 나의 보안 성향을 알아보고, 맞춤형 암호화 알고리즘을 추천받는 서비스
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Flask</span>
+                                    <span class="tech-tag">HTML/CSS</span>
+                                    <span class="tech-tag">JavaScript</span>
+                                    <span class="tech-tag">Render</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://cryptomatch-v11.vercel.app" class="project-link" target="_blank" rel="noopener">🔗 Live Demo</a>
+                                    <a href="https://drive.google.com/file/d/1hfK8d_3BH-BZIj9B-sco7mzZwjhvZvWH/view?usp=drive_link" class="project-link" target="_blank" rel="noopener">📝 Report</a>
+                                </div>
+                            </article>
+                            
+                            <article class="project">
+                                <h3 class="project-title">📓 NoteCrypt - 군사급 보안 수준의 개인 노트 관리 시스템</h3>
+                                <div class="project-desc">
+                                    군사급 보안 요건을 만족하는 고급 개인 노트 앱으로, <strong>Tauri 기반의 데스크탑 보안 애플리케이션</strong>입니다. 
+                                    암호화, 메모리 보호, 디버깅 방지 기능 등을 직접 구현했습니다.
+                                </div>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Tauri</span>
+                                    <span class="tech-tag">Rust</span>
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">TypeScript</span>
+                                    <span class="tech-tag">ChaCha20-Poly1305</span>
+                                    <span class="tech-tag">Argon2</span>
+                                    <span class="tech-tag">TPM</span>
+                                </div>
+                                <div style="color: #cccccc; margin: 15px 0;">
+                                    <strong style="color: #00ff41;">핵심 기능:</strong><br>
+                                    • 메모 암호화/복호화, 즐겨찾기, 삭제, 보안 타이머<br>
+                                    • 마스터 패스워드 기반 접근 제어<br>
+                                    • 메모리 제로화, 디버거 탐지, 하드웨어 보안 모듈 연동<br><br>
+                                    <strong style="color: #00ff41;">성과:</strong><br>
+                                    • 메모리 사용량 75% 절약, 암호화 성능 3.4배 향상<br>
+                                    • OWASP 및 NIST 보안 가이드라인 반영한 구조 설계
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://drive.google.com/file/d/1PFlfvj6BUI7Z2zn1GZnn_AS4PxKpJWea/view?usp=drive_link" class="project-link" target="_blank" rel="noopener">📊 웹앱 vs Tauri 기술 비교 분석 보고서</a>
+                                </div>
+                            </article>
+                        </div>
                         
                         <!-- Certifications Section -->
                         <div id="certifications" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">Certifications & Academic Plans</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">Certifications & Academic Plans</h2>
                             
-                            <!-- 자격증 및 학위 설명 -->
                             <div style="margin-bottom: 25px; padding: 15px; background: rgba(0, 255, 65, 0.05); border: 1px solid #00cc33; border-radius: 8px;">
                                 <p style="color: #cccccc; font-size: 14px; line-height: 1.6; margin: 0;">
                                     <strong style="color: #00ff41;">🎓 전문성 체계화 로드맵</strong> - 보안 실무 자격증부터 학위 취득까지, 
@@ -1404,8 +1469,7 @@
                                 </p>
                             </div>
                             
-                            <!-- 현재 진행 상황 -->
-                            <h4 style="color: #00ff41; margin-bottom: 20px; font-size: 16px;">🎯 현재 진행 상황</h4>
+                            <h3 style="color: #00ff41; margin-bottom: 20px; font-size: 16px;">🎯 현재 진행 상황</h3>
                             
                             <div class="badge-card" style="border-color: #00ff41; box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);">
                                 <div class="badge-icon" style="background: rgba(0, 255, 65, 0.3);">🐧</div>
@@ -1433,8 +1497,7 @@
                                 <div class="badge-status" style="color: #ffaa00; font-size: 16px;">🟡</div>
                             </div>
                             
-                            <!-- 산업기사 자격증 계획 -->
-                            <h4 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🏭 산업기사 자격증 취득 계획</h4>
+                            <h3 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🏭 산업기사 자격증 취득 계획</h3>
                             
                             <div class="badge-card">
                                 <div class="badge-icon">🛡️</div>
@@ -1475,8 +1538,7 @@
                                 <div class="badge-status progress">🎯</div>
                             </div>
                             
-                            <!-- 학점은행제 및 학위 계획 -->
-                            <h4 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🎓 학위 취득 계획</h4>
+                            <h3 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🎓 학위 취득 계획</h3>
                             
                             <div class="badge-card" style="border-color: #9966ff; box-shadow: 0 0 15px rgba(153, 102, 255, 0.2);">
                                 <div class="badge-icon" style="background: rgba(153, 102, 255, 0.3); color: #9966ff;">🎓</div>
@@ -1492,7 +1554,7 @@
                             </div>
                             
                             <div style="margin: 20px 0; padding: 15px; background: rgba(153, 102, 255, 0.1); border: 1px solid #9966ff; border-radius: 8px;">
-                                <h5 style="color: #9966ff; margin-bottom: 10px; font-size: 14px;">📚 정보보호학 학점은행제 전략</h5>
+                                <h4 style="color: #9966ff; margin-bottom: 10px; font-size: 14px;">📚 정보보호학 학점은행제 전략</h4>
                                 <ul style="color: #cccccc; padding-left: 20px; margin: 0; line-height: 1.6; font-size: 13px;">
                                     <li style="margin-bottom: 5px;">산업보안관리사, 정보처리산업기사, 정보보안산업기사 자격증을 학점으로 인정받아 효율적 학위 취득</li>
                                     <li style="margin-bottom: 5px;">정보보호학 전공 필수과목: 암호학, 네트워크보안, 시스템보안, 보안관리 등 집중 이수</li>
@@ -1501,8 +1563,7 @@
                                 </ul>
                             </div>
                             
-                            <!-- 국제 자격증 계획 -->
-                            <h4 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🌍 국제 자격증 취득 계획</h4>
+                            <h3 style="color: #00ff41; margin-bottom: 20px; margin-top: 40px; font-size: 16px;">🌍 국제 자격증 취득 계획</h3>
                             
                             <div class="badge-card">
                                 <div class="badge-icon">🔍</div>
@@ -1517,7 +1578,6 @@
                                 <div class="badge-status progress">🎯</div>
                             </div>
                             
-                            <!-- 전체 로드맵 -->
                             <div style="margin-top: 30px; padding: 20px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00cc33; border-radius: 8px;">
                                 <h4 style="color: #00ff41; margin-bottom: 15px; font-size: 16px;">🗺️ 종합 전문성 구축 로드맵</h4>
                                 <div style="color: #cccccc; line-height: 1.6;">
@@ -1550,10 +1610,9 @@
                         
                         <!-- TryHackMe Section -->
                         <div id="tryhackme" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">TryHackMe Progress</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">TryHackMe Progress</h2>
                             
-                            <!-- TryHackMe 설명 -->
                             <div style="margin-bottom: 25px; padding: 15px; background: rgba(0, 255, 65, 0.05); border: 1px solid #00cc33; border-radius: 8px;">
                                 <p style="color: #cccccc; font-size: 14px; line-height: 1.6; margin: 0;">
                                     <strong style="color: #00ff41;">TryHackMe</strong>는 전 세계적으로 인정받는 사이버보안 학습 플랫폼입니다. 
@@ -1562,19 +1621,18 @@
                                 </p>
                             </div>
                             
-                            <!-- TryHackMe 공식 뱃지 -->
-                            <div style="text-align: center; margin-bottom: 30px; padding: 15px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00ff41; border-radius: 8px;">
-                                <h4 style="color: #00ff41; margin-bottom: 10px; font-size: 16px;">🏆 Official TryHackMe Badges</h4>
-                                <div style="display: flex; justify-content: center; align-items: center; min-height: 80px;">
+                            <div class="thm-badge-container">
+                                <h3 style="color: #00ff41; margin-bottom: 10px; font-size: 16px;">🏆 Official TryHackMe Badges</h3>
+                                <div class="thm-badge-frame">
                                     <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5298132" 
-                                            style="border:none; width: 420px; height: 80px; background: white; border-radius: 6px; overflow: hidden;" 
-                                            title="TryHackMe Badges" scrolling="no"></iframe>
+                                            title="TryHackMe Badges" 
+                                            scrolling="no"
+                                            loading="lazy"></iframe>
                                 </div>
                                 <p style="color: #00cc33; font-size: 12px; margin-top: 8px;">실시간 업데이트되는 TryHackMe 공식 뱃지</p>
                             </div>
                             
-                            <!-- 주요 완료 룸들 -->
-                            <h4 style="color: #00ff41; margin-bottom: 20px; font-size: 16px;">📚 Completed Learning Paths & Rooms</h4>
+                            <h3 style="color: #00ff41; margin-bottom: 20px; font-size: 16px;">📚 Completed Learning Paths & Rooms</h3>
                             
                             <div class="badge-card">
                                 <div class="badge-icon">🎳</div>
@@ -1659,15 +1717,15 @@
                         
                         <!-- Blog Section -->
                         <div id="blog" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">Latest Blog Posts</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">Latest Blog Posts</h2>
                             
-                            <div class="blog-card" onclick="openBlogPost('utm-nmap')" style="cursor: pointer;">
+                            <article class="blog-card" data-post="utm-nmap" tabindex="0" role="button">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">Network Security</div>
                                 </div>
-                                <h4 class="blog-title">UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기 <span class="blog-link-icon">🔗</span></h4>
+                                <h3 class="blog-title">UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기 <span class="blog-link-icon" aria-hidden="true">🔗</span></h3>
                                 <p class="blog-excerpt">Mac 환경에서 UTM 가상화를 이용해 Ubuntu Server를 설치하고, Nmap을 활용한 네트워크 보안 분석 실습 과정을 정리했습니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#UTM</span>
@@ -1675,14 +1733,14 @@
                                     <span class="blog-tag">#Nmap</span>
                                     <span class="blog-tag">#네트워크보안</span>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="blog-card" onclick="openBlogPost('virtualbox-cli')" style="cursor: pointer;">
+                            <article class="blog-card" data-post="virtualbox-cli" tabindex="0" role="button">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">System Administration</div>
                                 </div>
-                                <h4 class="blog-title">VirtualBox 사용 Ubuntu CLI로 관리하기 (1) <span class="blog-link-icon">🔗</span></h4>
+                                <h3 class="blog-title">VirtualBox 사용 Ubuntu CLI로 관리하기 (1) <span class="blog-link-icon" aria-hidden="true">🔗</span></h3>
                                 <p class="blog-excerpt">VirtualBox 환경에서 Ubuntu를 CLI로 효율적으로 관리하는 방법과 필수 명령어들을 정리한 시리즈의 첫 번째 글입니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#VirtualBox</span>
@@ -1690,14 +1748,14 @@
                                     <span class="blog-tag">#CLI</span>
                                     <span class="blog-tag">#시스템관리</span>
                                 </div>
-                            </div>
+                            </article>
                             
-                            <div class="blog-card" onclick="openBlogPost('journalctl-security')" style="cursor: pointer;">
+                            <article class="blog-card" data-post="journalctl-security" tabindex="0" role="button">
                                 <div class="blog-header">
                                     <div class="blog-date">2024.XX.XX</div>
                                     <div class="blog-category">Security Monitoring</div>
                                 </div>
-                                <h4 class="blog-title">journalctl 로그로 root 권한 획득 감지하기 <span class="blog-link-icon">🔗</span></h4>
+                                <h3 class="blog-title">journalctl 로그로 root 권한 획득 감지하기 <span class="blog-link-icon" aria-hidden="true">🔗</span></h3>
                                 <p class="blog-excerpt">시스템 로그 분석을 통해 의심스러운 권한 상승 시도를 탐지하고 모니터링하는 방법을 실습과 함께 정리했습니다.</p>
                                 <div class="blog-tags">
                                     <span class="blog-tag">#journalctl</span>
@@ -1705,19 +1763,19 @@
                                     <span class="blog-tag">#권한상승</span>
                                     <span class="blog-tag">#보안모니터링</span>
                                 </div>
-                            </div>
+                            </article>
                             
                             <div style="text-align: center; margin-top: 30px; padding: 15px; border: 1px solid #00cc33; border-radius: 8px; background: rgba(0, 255, 65, 0.05);">
                                 <p style="color: #00cc33; margin: 0; font-size: 13px;">
-                                    📝 더 많은 보안 실습 및 기술 포스팅은 <a href="https://velog.io/@qu1cks1lv37" target="_blank" style="color: #00ff41; text-decoration: none;">Velog 블로그</a>에서 확인하세요!
+                                    📝 더 많은 보안 실습 및 기술 포스팅은 <a href="https://velog.io/@qu1cks1lv37" target="_blank" rel="noopener" style="color: #00ff41; text-decoration: none;">Velog 블로그</a>에서 확인하세요!
                                 </p>
                             </div>
                         </div>
                         
                         <!-- Contact Section -->
                         <div id="contact" class="content-section">
-                            <button class="back-button" onclick="showSection('main-menu')">← Back to Menu</button>
-                            <div class="section-title">Contact</div>
+                            <button class="back-button" aria-label="Back to main menu">← Back to Menu</button>
+                            <h2 class="section-title">Contact</h2>
                             
                             <div class="contact-item">
                                 <div style="color: #00ff41; margin-bottom: 8px;">📧 Email</div>
@@ -1726,59 +1784,243 @@
                             
                             <div class="contact-item">
                                 <div style="color: #00ff41; margin-bottom: 8px;">🐙 GitHub</div>
-                                <a href="https://github.com/YEONJUYI/qu1cks1lv37" target="_blank">github.com/YEONJUYI</a>
+                                <a href="https://github.com/YEONJUYI/qu1cks1lv37" target="_blank" rel="noopener">github.com/YEONJUYI</a>
                             </div>
                             
                             <div class="contact-item">
                                 <div style="color: #00ff41; margin-bottom: 8px;">📝 Velog</div>
-                                <a href="https://velog.io/@qu1cks1lv37" target="_blank">velog.io/@qu1cks1lv37</a>
+                                <a href="https://velog.io/@qu1cks1lv37" target="_blank" rel="noopener">velog.io/@qu1cks1lv37</a>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill Details Popup -->
+                    <div id="skill-details" class="skill-details-popup" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="skill-details-title">
+                        <div class="skill-details-content">
+                            <div class="skill-details-header">
+                                <h4 id="skill-details-title"></h4>
+                                <button class="skill-details-close" aria-label="Close skill details" type="button">✕</button>
+                            </div>
+                            <div id="skill-details-body" class="skill-details-body"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
     
     <script>
-        // Typing animation
-        const texts = [
-        "나는 보안을 만든다. 이연주",
-        ", qu1cks1lv37",
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        const typingElement = document.getElementById('typing-text');
+        // State management
+        let currentSection = 'main-menu';
+        let matrixInterval = null;
+        let isTyping = false;
         
-        function typeText() {
-            if (textIndex < texts.length) {
-                if (charIndex < texts[textIndex].length) {
-                    typingElement.textContent += texts[textIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeText, 100);
-                } else {
-                    setTimeout(() => {
-                        textIndex++;
-                        charIndex = 0;
-                        if (textIndex < texts.length) {
-                            typingElement.textContent += '\n';
-                            typeText();
-                        } else {
-                            typingElement.classList.remove('typing');
-                        }
-                    }, 1000);
-                }
+        // Skill data
+        const skillData = {
+            python: {
+                title: '🐍 Python',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>CryptoMatch 프로젝트</h5>
+                        <p>Flask 백엔드 개발, 보안 성향 분석 알고리즘 구현, 암호화 알고리즘 추천 시스템</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>SilverStrike 침투테스트 도구</h5>
+                        <p>순수 Python 네트워크 스캐너, 멀티쓰레딩 기반 자동화된 보안 분석 도구 개발</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>보안 스크립트 개발</h5>
+                        <p>자동화된 보안 분석 도구, 로그 파싱 및 분석 스크립트 작성</p>
+                    </div>
+                `
+            },
+            flask: {
+                title: '🌶️ Flask',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>CryptoMatch 웹 애플리케이션</h5>
+                        <p>REST API 개발, 세션 관리, 보안 헤더 설정, 암호화 기능 통합</p>
+                    </div>
+                `
+            },
+            react: {
+                title: '⚛️ React',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>NoteCrypt 프론트엔드</h5>
+                        <p>Tauri 기반 데스크톱 앱의 React UI, TypeScript로 타입 안전성 확보</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>Neural Division 해킹 게임</h5>
+                        <p>사이버펑크 테마의 인터랙티브 터미널 시뮬레이터, 실시간 명령어 처리</p>
+                    </div>
+                `
+            },
+            nmap: {
+                title: '🔍 Nmap',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>SilverStrike 침투테스트 플랫폼</h5>
+                        <p>네트워크 탐지 단계에서 Nmap 스타일 포트 스캔 기능을 순수 Python으로 구현</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>네트워크 보안 분석 실습</h5>
+                        <p>UTM 환경에서 Ubuntu Server 포트 스캔, 취약점 탐지, 네트워크 매핑</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>Velog 블로그 포스팅</h5>
+                        <p>"UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기" 실습 기록</p>
+                    </div>
+                `
+            },
+            burpsuite: {
+                title: '🕷️ Burp Suite',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>웹 취약점 분석</h5>
+                        <p>웹 애플리케이션 보안 테스트, HTTP 요청/응답 분석, 취약점 스캐닝</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>TryHackMe 웹 보안 실습</h5>
+                        <p>Web Fundamentals 학습 경로에서 실제 웹 취약점 탐지 및 분석 실습</p>
+                    </div>
+                `
+            },
+            wireshark: {
+                title: '🦈 Wireshark',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>네트워크 패킷 분석</h5>
+                        <p>네트워크 트래픽 모니터링, 프로토콜 분석, 보안 이벤트 탐지</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>침투테스트 트래픽 분석</h5>
+                        <p>SilverStrike 도구 검증을 위한 네트워크 패킷 캡처 및 분석</p>
+                    </div>
+                `
+            },
+            ubuntu: {
+                title: '🐧 Ubuntu',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>시스템 관리 실습</h5>
+                        <p>VirtualBox 환경에서 Ubuntu CLI 관리, 보안 설정, 사용자 권한 관리</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>보안 모니터링</h5>
+                        <p>journalctl을 이용한 로그 분석, root 권한 획득 감지 시스템 구축</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>UTM 환경 네트워크 분석</h5>
+                        <p>Ubuntu Server 설치 및 Nmap을 활용한 보안 분석 실습</p>
+                    </div>
+                `
+            },
+            web: {
+                title: '🌐 HTML/CSS',
+                content: `
+                    <div class="skill-project-ref">
+                        <h5>CryptoMatch UI/UX</h5>
+                        <p>반응형 웹 디자인, 모바일 최적화, 보안 테스트 인터페이스 구현</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>포트폴리오 웹사이트</h5>
+                        <p>터미널 스타일 포트폴리오, 매트릭스 효과, 사이버펑크 테마 구현</p>
+                    </div>
+                    <div class="skill-project-ref">
+                        <h5>GameWalks 플랫폼</h5>
+                        <p>Steam 게임 정보 플랫폼의 프론트엔드 UI/UX 개발</p>
+                    </div>
+                `
             }
+        };
+        
+        // Blog URLs
+        const blogUrls = {
+            'utm-nmap': 'https://velog.io/@qu1cks1lv37/UTM으로-Ubuntu-Server-설치하고-Nmap으로-보안-분석해보기-Mac-환경-실습',
+            'virtualbox-cli': 'https://velog.io/@qu1cks1lv37/ubuntu-cli로-관리하기-1',
+            'journalctl-security': 'https://velog.io/@qu1cks1lv37/journalctl-로그로-root-권한-획득-감지하기'
+        };
+        
+        // Utility functions
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
         }
         
-        // Matrix rain effect
-        function createMatrixRain() {
-            const matrix = document.getElementById('matrix');
-            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+        
+        function isReducedMotion() {
+            return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+        
+        // Typing animation
+        function typeText() {
+            if (isTyping) return;
             
-            // Reduce matrix density on mobile
-            const isMobile = window.innerWidth <= 768;
-            const charCount = isMobile ? 15 : 30;
+            const texts = [
+                "나는 보안을 만든다. 이연주",
+                ", qu1cks1lv37",
+            ];
+            
+            const typingElement = document.getElementById('typing-text');
+            if (!typingElement) return;
+            
+            isTyping = true;
+            let textIndex = 0;
+            let charIndex = 0;
+            
+            function type() {
+                if (textIndex < texts.length) {
+                    if (charIndex < texts[textIndex].length) {
+                        typingElement.textContent += texts[textIndex].charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, isReducedMotion() ? 10 : 100);
+                    } else {
+                        setTimeout(() => {
+                            textIndex++;
+                            charIndex = 0;
+                            if (textIndex < texts.length) {
+                                typingElement.textContent += '\n';
+                                type();
+                            } else {
+                                typingElement.classList.remove('typing');
+                                isTyping = false;
+                            }
+                        }, isReducedMotion() ? 10 : 1000);
+                    }
+                }
+            }
+            
+            type();
+        }
+        
+        // Matrix animation (performance optimized)
+        function createMatrixRain() {
+            if (isReducedMotion()) return;
+            
+            const matrix = document.getElementById('matrix');
+            if (!matrix) return;
+            
+            // Clear old characters
+            const oldChars = matrix.querySelectorAll('.matrix-char');
+            if (oldChars.length > 50) {
+                oldChars.forEach((char, index) => {
+                    if (index < 25) char.remove();
+                });
+            }
+            
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            const charCount = isMobile() ? 8 : 15;
             
             for (let i = 0; i < charCount; i++) {
                 const char = document.createElement('div');
@@ -1787,351 +2029,349 @@
                 char.style.left = Math.random() * 100 + '%';
                 char.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 char.style.animationDelay = Math.random() * 2 + 's';
+                
                 matrix.appendChild(char);
                 
+                // Auto cleanup
                 setTimeout(() => {
                     if (char.parentNode) {
-                        char.parentNode.removeChild(char);
+                        char.remove();
                     }
                 }, 5000);
             }
         }
         
-        // ✅ 히스토리 네비게이션 기능 추가
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.content-section');
+        // Navigation functions
+        function updateCommandOutput(message) {
             const output = document.getElementById('command-output');
+            if (output) {
+                output.textContent = message;
+            }
+        }
+        
+        function clearCommandInput() {
+            const input = document.getElementById('command-input');
+            if (input) {
+                input.value = '';
+                input.focus();
+            }
+        }
+        
+        function navigateToSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            const targetSection = document.getElementById(sectionId);
+            
+            if (!targetSection) return false;
             
             sections.forEach(section => {
                 section.classList.remove('active');
             });
             
-            document.getElementById(sectionId).classList.add('active');
+            targetSection.classList.add('active');
+            currentSection = sectionId;
             
-            // ✅ URL에 가짜 해시 추가 (히스토리 쌓기)
-            history.pushState({ section: sectionId }, '', `#${sectionId}`);
-            
-            // Update command output
-            if (sectionId === 'main-menu') {
-                output.textContent = 'Returned to main menu';
-            } else {
-                output.textContent = `Navigated to: ${sectionId}`;
+            // Update history only if it's a user navigation
+            if (history.state?.section !== sectionId) {
+                history.pushState({ section: sectionId }, '', `#${sectionId}`);
             }
             
-            // Clear input
-            document.getElementById('command-input').value = '';
+            return true;
         }
         
-        // ✅ 뒤로가기 이벤트 감지 및 섹션 이동
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.section) {
-                // 히스토리에서 온 섹션으로 이동 (pushState 없이)
-                const sections = document.querySelectorAll('.content-section');
-                const output = document.getElementById('command-output');
-                
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                document.getElementById(event.state.section).classList.add('active');
-                
-                if (event.state.section === 'main-menu') {
-                    output.textContent = 'Returned to main menu';
+        function showSection(sectionId) {
+            if (navigateToSection(sectionId)) {
+                if (sectionId === 'main-menu') {
+                    updateCommandOutput('Returned to main menu');
                 } else {
-                    output.textContent = `Navigated to: ${event.state.section}`;
+                    updateCommandOutput(`Navigated to: ${sectionId}`);
                 }
-                
-                document.getElementById('command-input').value = '';
-            } else {
-                // 기본적으로 메인 메뉴로 이동
-                const sections = document.querySelectorAll('.content-section');
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.getElementById('main-menu').classList.add('active');
-                document.getElementById('command-output').textContent = 'Returned to main menu';
+                clearCommandInput();
             }
-        });
+        }
         
-        // Command Input Handler
-        document.getElementById('command-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const command = this.value.trim();
-                const output = document.getElementById('command-output');
-                
-                switch(command) {
-                    case '1':
-                        showSection('about');
-                        break;
-                    case '2':
-                        showSection('skills');
-                        break;
-                    case '3':
-                        showSection('projects');
-                        break;
-                    case '4':
-                        showSection('certifications');
-                        break;
-                    case '5':
-                        showSection('tryhackme');
-                        break;
-                    case '6':
-                        showSection('blog');
-                        break;
-                    case '7':
-                        showSection('contact');
-                        break;
-                    case '0':
-                    case 'menu':
-                        showSection('main-menu');
-                        break;
-                    case 'help':
-                        output.innerHTML = 'Available commands:<br>1 - About Me<br>2 - Skills<br>3 - Projects<br>4 - Certifications<br>5 - TryHackMe<br>6 - Blog<br>7 - Contact<br>0 or menu - Main Menu';
-                        this.value = '';
-                        return;
-                    case 'clear':
-                        output.textContent = '';
-                        this.value = '';
-                        return;
-                    default:
-                        output.textContent = `Command not found: ${command}. Type 'help' for available commands.`;
-                        this.value = '';
-                        return;
-                }
-            }
-        });
-        
-        // Skill Details Functions
+        // Skill details functions
         function showSkillDetails(skillType) {
             const popup = document.getElementById('skill-details');
             const title = document.getElementById('skill-details-title');
             const body = document.getElementById('skill-details-body');
             
-            const skillData = {
-                python: {
-                    title: '🐍 Python',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>CryptoMatch 프로젝트</h5>
-                            <p>Flask 백엔드 개발, 보안 성향 분석 알고리즘 구현, 암호화 알고리즘 추천 시스템</p>
-                        </div>
-                        <div class="skill-project-ref">
-                            <h5>보안 스크립트 개발</h5>
-                            <p>자동화된 보안 분석 도구, 로그 파싱 및 분석 스크립트 작성</p>
-                        </div>
-                    `
-                },
-                flask: {
-                    title: '🌶️ Flask',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>CryptoMatch 웹 애플리케이션</h5>
-                            <p>REST API 개발, 세션 관리, 보안 헤더 설정, 암호화 기능 통합</p>
-                        </div>
-                    `
-                },
-                react: {
-                    title: '⚛️ React',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>NoteCrypt 프론트엔드</h5>
-                            <p>Tauri 기반 데스크톱 앱의 React UI, TypeScript로 타입 안전성 확보</p>
-                        </div>
-                    `
-                },
-                nmap: {
-                    title: '🔍 Nmap',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>네트워크 보안 분석 실습</h5>
-                            <p>UTM 환경에서 Ubuntu Server 포트 스캔, 취약점 탐지, 네트워크 매핑</p>
-                        </div>
-                        <div class="skill-project-ref">
-                            <h5>Velog 블로그 포스팅</h5>
-                            <p>"UTM으로 Ubuntu Server 설치하고 Nmap으로 보안 분석해보기" 실습 기록</p>
-                        </div>
-                    `
-                },
-                burpsuite: {
-                    title: '🕷️ Burp Suite',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>웹 취약점 분석</h5>
-                            <p>웹 애플리케이션 보안 테스트, HTTP 요청/응답 분석, 취약점 스캐닝</p>
-                        </div>
-                    `
-                },
-                wireshark: {
-                    title: '🦈 Wireshark',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>네트워크 패킷 분석</h5>
-                            <p>네트워크 트래픽 모니터링, 프로토콜 분석, 보안 이벤트 탐지</p>
-                        </div>
-                    `
-                },
-                ubuntu: {
-                    title: '🐧 Ubuntu',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>시스템 관리 실습</h5>
-                            <p>VirtualBox 환경에서 Ubuntu CLI 관리, 보안 설정, 사용자 권한 관리</p>
-                        </div>
-                        <div class="skill-project-ref">
-                            <h5>보안 모니터링</h5>
-                            <p>journalctl을 이용한 로그 분석, root 권한 획득 감지 시스템 구축</p>
-                        </div>
-                    `
-                },
-                web: {
-                    title: '🌐 HTML/CSS',
-                    content: `
-                        <div class="skill-project-ref">
-                            <h5>CryptoMatch UI/UX</h5>
-                            <p>반응형 웹 디자인, 모바일 최적화, 보안 테스트 인터페이스 구현</p>
-                        </div>
-                        <div class="skill-project-ref">
-                            <h5>포트폴리오 웹사이트</h5>
-                            <p>터미널 스타일 포트폴리오, 매트릭스 효과, 사이버펑크 테마 구현</p>
-                        </div>
-                    `
-                }
-            };
-            
             const data = skillData[skillType];
-            if (data) {
-                title.textContent = data.title;
-                body.innerHTML = data.content;
-                popup.style.display = 'flex';
+            if (!data || !popup || !title || !body) return;
+            
+            title.textContent = data.title;
+            body.innerHTML = data.content;
+            popup.style.display = 'flex';
+            
+            // Focus management for accessibility
+            const closeButton = popup.querySelector('.skill-details-close');
+            if (closeButton) {
+                closeButton.focus();
             }
+            
+            // Trap focus in popup
+            popup.addEventListener('keydown', trapFocus);
         }
         
         function hideSkillDetails() {
             const popup = document.getElementById('skill-details');
-            popup.style.display = 'none';
+            if (popup) {
+                popup.style.display = 'none';
+                popup.removeEventListener('keydown', trapFocus);
+            }
         }
         
-        // Blog Post Functions
-        function openBlogPost(postId) {
-            const blogUrls = {
-                'utm-nmap': 'https://velog.io/@qu1cks1lv37/UTM으로-Ubuntu-Server-설치하고-Nmap으로-보안-분석해보기-Mac-환경-실습',
-                'virtualbox-cli': 'https://velog.io/@qu1cks1lv37/ubuntu-cli로-관리하기-1',
-                'journalctl-security': 'https://velog.io/@qu1cks1lv37/journalctl-로그로-root-권한-획득-감지하기'
-            };
+        function trapFocus(e) {
+            if (e.key !== 'Tab') return;
             
+            const popup = document.getElementById('skill-details');
+            const focusableElements = popup.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
+        
+        // Blog post function
+        function openBlogPost(postId) {
             const url = blogUrls[postId];
             if (url) {
-                window.open(url, '_blank');
+                window.open(url, '_blank', 'noopener,noreferrer');
             } else {
-                // 실제 링크가 없는 경우 Velog 메인으로
-                window.open('https://velog.io/@qu1cks1lv37', '_blank');
+                window.open('https://velog.io/@qu1cks1lv37', '_blank', 'noopener,noreferrer');
             }
         }
         
-        // Close popup when clicking outside
-        document.addEventListener('click', function(e) {
-            const popup = document.getElementById('skill-details');
-            if (e.target === popup) {
-                hideSkillDetails();
+        // Command processing
+        function processCommand(command) {
+            const cmd = command.trim().toLowerCase();
+            
+            switch(cmd) {
+                case '1':
+                    showSection('about');
+                    return true;
+                case '2':
+                    showSection('skills');
+                    return true;
+                case '3':
+                    showSection('projects');
+                    return true;
+                case '4':
+                    showSection('certifications');
+                    return true;
+                case '5':
+                    showSection('tryhackme');
+                    return true;
+                case '6':
+                    showSection('blog');
+                    return true;
+                case '7':
+                    showSection('contact');
+                    return true;
+                case '0':
+                case 'menu':
+                    showSection('main-menu');
+                    return true;
+                case 'help':
+                    updateCommandOutput('Available commands:\n1 - About Me\n2 - Skills\n3 - Projects\n4 - Certifications\n5 - TryHackMe\n6 - Blog\n7 - Contact\n0 or menu - Main Menu');
+                    clearCommandInput();
+                    return true;
+                case 'clear':
+                    updateCommandOutput('');
+                    clearCommandInput();
+                    return true;
+                default:
+                    updateCommandOutput(`Command not found: ${command}. Type 'help' for available commands.`);
+                    clearCommandInput();
+                    return false;
             }
-        });
+        }
         
-        // Handle external links
-        function handleExternalLinks() {
-            document.querySelectorAll('.project-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const url = link.getAttribute('href');
-                    if (url && url !== '#') {
-                        window.open(url, '_blank');
+        // Event listeners
+        function setupEventListeners() {
+            // Command input
+            const commandInput = document.getElementById('command-input');
+            if (commandInput) {
+                commandInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        processCommand(e.target.value);
+                    }
+                });
+            }
+            
+            // Menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const key = item.getAttribute('data-key');
+                
+                // Click handler
+                item.addEventListener('click', () => {
+                    if (key) processCommand(key);
+                });
+                
+                // Keyboard handler
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (key) processCommand(key);
                     }
                 });
             });
+            
+            // Back buttons
+            document.querySelectorAll('.back-button').forEach(button => {
+                button.addEventListener('click', () => showSection('main-menu'));
+                button.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        showSection('main-menu');
+                    }
+                });
+            });
+            
+            // Skill tags
+            document.querySelectorAll('.skill-tag.clickable').forEach(tag => {
+                const skill = tag.getAttribute('data-skill');
+                
+                tag.addEventListener('click', () => {
+                    if (skill) showSkillDetails(skill);
+                });
+                
+                tag.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (skill) showSkillDetails(skill);
+                    }
+                });
+            });
+            
+            // Skill details close
+            const closeButton = document.querySelector('.skill-details-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', hideSkillDetails);
+            }
+            
+            // Blog cards
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const postId = card.getAttribute('data-post');
+                
+                card.addEventListener('click', () => {
+                    if (postId) openBlogPost(postId);
+                });
+                
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (postId) openBlogPost(postId);
+                    }
+                });
+            });
+            
+            // Global keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Escape key closes popups
+                if (e.key === 'Escape') {
+                    hideSkillDetails();
+                }
+                
+                // Number keys for navigation (when not in input)
+                if (document.activeElement !== commandInput) {
+                    const num = e.key;
+                    if (num >= '0' && num <= '7') {
+                        processCommand(num);
+                    }
+                }
+            });
+            
+            // Popup click outside to close
+            const popup = document.getElementById('skill-details');
+            if (popup) {
+                popup.addEventListener('click', (e) => {
+                    if (e.target === popup) {
+                        hideSkillDetails();
+                    }
+                });
+            }
+            
+            // History navigation
+            window.addEventListener('popstate', (event) => {
+                if (event.state && event.state.section) {
+                    navigateToSection(event.state.section);
+                    updateCommandOutput(`Navigated to: ${event.state.section}`);
+                } else {
+                    navigateToSection('main-menu');
+                    updateCommandOutput('Returned to main menu');
+                }
+            });
+            
+            // Resize handler (debounced)
+            window.addEventListener('resize', debounce(() => {
+                // Restart matrix with new density
+                if (matrixInterval) {
+                    clearInterval(matrixInterval);
+                    matrixInterval = setInterval(createMatrixRain, 4000);
+                }
+            }, 250));
         }
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeText, 1000);
-            setInterval(createMatrixRain, 3000);
-            handleExternalLinks();
-            
-            // ✅ 페이지 첫 로딩 시 해시값 처리
+        // Initialization
+        function init() {
+            // Set initial section from URL hash
             const initialSection = window.location.hash.replace('#', '') || 'main-menu';
-            if (initialSection !== 'main-menu') {
-                // 초기 섹션이 메인 메뉴가 아닌 경우 히스토리에 추가
-                history.replaceState({ section: initialSection }, '', `#${initialSection}`);
-            }
-            showSection(initialSection);
+            const validSections = ['main-menu', 'about', 'skills', 'projects', 'certifications', 'tryhackme', 'blog', 'contact'];
             
-            // Focus on command input
-            document.getElementById('command-input').focus();
+            if (validSections.includes(initialSection)) {
+                navigateToSection(initialSection);
+                if (initialSection !== 'main-menu') {
+                    history.replaceState({ section: initialSection }, '', `#${initialSection}`);
+                }
+            } else {
+                navigateToSection('main-menu');
+            }
+            
+            // Start animations
+            setTimeout(() => {
+                if (!isReducedMotion()) {
+                    typeText();
+                }
+            }, 1000);
+            
+            if (!isReducedMotion()) {
+                matrixInterval = setInterval(createMatrixRain, 4000);
+                setTimeout(createMatrixRain, 1000);
+            }
+            
+            // Setup event listeners
+            setupEventListeners();
+            
+            // Focus command input
+            const commandInput = document.getElementById('command-input');
+            if (commandInput) {
+                commandInput.focus();
+            }
+        }
+        
+        // Start when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (matrixInterval) {
+                clearInterval(matrixInterval);
+            }
         });
     </script>
 </body>
-</html><span class="tech-tag">Python</span>
-                                    <span class="tech-tag">Socket Programming</span>
-                                    <span class="tech-tag">Multi-threading</span>
-                                    <span class="tech-tag">Cybersecurity</span>
-                                    <span class="tech-tag">Penetration Testing</span>
-                                    <span class="tech-tag">Network Security</span>
-                                </div>
-                                <div style="color: #cccccc; margin: 15px 0;">
-                                    <strong style="color: #00ff41;">핵심 기능:</strong><br>
-                                    • 완전 자동화된 5단계 침투 프로세스 - Discovery부터 Reporting까지 원클릭 실행<br>
-                                    • 기업 네트워크 특화 공격 모듈 - SMB, Kerberos, Active Directory 환경 전용 공격 벡터<br>
-                                    • 지능형 공격 체인 - 이전 단계 결과에 따른 동적 공격 경로 변경 및 최적화<br>
-                                    • 순수 Python 네트워크 스캐너 - nmap 의존성 제거, 멀티쓰레딩 기반 고성능 포트 스캔<br>
-                                    • 기업용 보고서 자동 생성 - JSON 구조화된 취약점 분석 및 보안 권장사항 제공<br>
-                                    • 모듈러 확장 구조 - 새로운 공격 기법과 시나리오 플러그인 방식 추가 가능<br><br>
-                                    <strong style="color: #00ff41;">개발 성과:</strong><br>
-                                    • 52초 내 전체 침투 테스트 완료 - 네트워크 탐지부터 보고서 생성까지 완전 자동화<br>
-                                    • 실무급 보안 도구 수준 달성 - 기업 환경에서 실제 사용 가능한 침투 테스트 플랫폼 구현<br>
-                                    • 90% 시간 단축 효과 - 수동 침투 테스트 대비 대폭적인 효율성 개선 달성<br>
-                                    • 15개 핵심 포트 정밀 분석 - TCP 소켓 프로그래밍 기반 고정밀 서비스 탐지 및 배너 그래빙<br>
-                                    • 기업 수준 기술 문서화 - 상세한 아키텍처 분석과 ROI 산정까지 포함한 전문 보고서 작성<br>
-                                    • 교육 및 실무 양용 설계 - 단계별 학습 가능하면서도 실제 보안 진단에 활용 가능한 구조
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://github.com/YEONJUYI/Silverstrike" class="project-link" target="_blank">🔗 GitHub Repository</a>
-                                    <a href="https://drive.google.com/file/d/1LTPNXVQD-B4r43c6DWZzfaCxEiTJWgVH/view?usp=drive_link" class="project-link" target="_blank">📊 Technical Report</a>
-                                    <a href="https://drive.google.com/file/d/16o6ZZt8L85WLyZFSHh-6gIWHE3Moyg-7/view?usp=drive_link" class="project-link" target="_blank">🎯 Live Demo</a>
-                                </div>
-                            </div>
-                            
-                            <div class="project">
-                                <div class="project-title">🎮 Neural Division - 사이버펑크 터미널 해킹 게임</div>
-                                <div class="project-desc">
-                                    사이버펑크 세계관의 <strong>인터랙티브 터미널 해킹 시뮬레이터</strong>입니다. 
-                                    Neural Division에서 발견된 정체불명의 "Phantom Signal"을 조사하며, 터미널 명령어와 ASCII 네트워크 지도를 통해 진실을 밝혀내는 스토리 기반 게임입니다.
-                                </div>
-                                <div class="project-tech">
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">JavaScript</span>
-                                    <span class="tech-tag">Tailwind CSS</span>
-                                    <span class="tech-tag">Vercel</span>
-                                    <span class="tech-tag">Interactive Terminal</span>
-                                    <span class="tech-tag">ASCII Art</span>
-                                </div>
-                                <div style="color: #cccccc; margin: 15px 0;">
-                                    <strong style="color: #00ff41;">주요 기능:</strong><br>
-                                    • 실시간 터미널 인터페이스 및 타이핑 애니메이션<br>
-                                    • 3단계 미션 시스템과 5개 단서 수집 메커니즘<br>
-                                    • ASCII 아트 기반 비주얼 네트워크 해킹 모드<br>
-                                    • 가상 파일 시스템과 디렉터리 탐색 기능<br><br>
-                                    <strong style="color: #00ff41;">게임플레이:</strong><br>
-                                    • 터미널 명령어로 시스템 탐색 (ls, cd, cat 등)<br>
-                                    • mind_dive로 권한 상승 후 기밀 파일 접근<br>
-                                    • visual_hack으로 네트워크 지도 모드 전환<br>
-                                    • 스토리 진행에 따른 동적 콘텐츠 변화
-                                </div>
-                                <div class="project-links">
-                                    <a href="https://n-div-test-sltr.vercel.app/" class="project-link" target="_blank">🎯 Live Beta Play</a>
-                                </div>
-                            </div>
-                            
-                            <div class="project">
-                                <div class="project-title">🧠 CryptoMatch - 보안 성향 테스트 웹앱</div>
-                                <div class="project-desc">
-                                    심리 테스트로 나의 보안 성향을 알아보고, 맞춤형 암호화 알고리즘을 추천받는 서비스
-                                </div>
-                                <div class="project-tech">
+</html>
